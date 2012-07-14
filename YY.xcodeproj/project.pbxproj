@@ -18,9 +18,9 @@
 		87ED8E3B15B15F9F00D2C800 /* YY.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E3915B15F9F00D2C800 /* YY.xcdatamodeld */; };
 		87ED8E3E15B15F9F00D2C800 /* AlbumsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */; };
 		87ED8E4115B15F9F00D2C800 /* AlbumDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */; };
-		87ED8E4E15B1662700D2C800 /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E4D15B1662700D2C800 /* UIImageToDataTransformer.m */; };
 		87ED8E5115B167C100D2C800 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5015B167C100D2C800 /* Album.m */; };
 		87ED8E5415B1680500D2C800 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5315B1680500D2C800 /* Artist.m */; };
+		87ED8E5A15B169E800D2C800 /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,12 +41,12 @@
 		87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AlbumsListViewController.m; path = YY/AlbumsListViewController.m; sourceTree = "<group>"; };
 		87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AlbumDetailViewController.h; path = YY/AlbumDetailViewController.h; sourceTree = "<group>"; };
 		87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AlbumDetailViewController.m; path = YY/AlbumDetailViewController.m; sourceTree = "<group>"; };
-		87ED8E4C15B1662700D2C800 /* UIImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageToDataTransformer.h; sourceTree = "<group>"; };
-		87ED8E4D15B1662700D2C800 /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageToDataTransformer.m; sourceTree = "<group>"; };
 		87ED8E4F15B167C100D2C800 /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Album.h; path = YY/Album.h; sourceTree = "<group>"; };
 		87ED8E5015B167C100D2C800 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Album.m; path = YY/Album.m; sourceTree = "<group>"; };
 		87ED8E5215B1680500D2C800 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Artist.h; path = YY/Artist.h; sourceTree = "<group>"; };
 		87ED8E5315B1680500D2C800 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Artist.m; path = YY/Artist.m; sourceTree = "<group>"; };
+		87ED8E5815B169E800D2C800 /* UIImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageToDataTransformer.h; path = YY/UIImageToDataTransformer.h; sourceTree = "<group>"; };
+		87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageToDataTransformer.m; path = YY/UIImageToDataTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +122,9 @@
 				87ED8E5315B1680500D2C800 /* Artist.m */,
 				87ED8E4F15B167C100D2C800 /* Album.h */,
 				87ED8E5015B167C100D2C800 /* Album.m */,
+				87ED8E5815B169E800D2C800 /* UIImageToDataTransformer.h */,
+				87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */,
 				87ED8E3915B15F9F00D2C800 /* YY.xcdatamodeld */,
-				87ED8E4C15B1662700D2C800 /* UIImageToDataTransformer.h */,
-				87ED8E4D15B1662700D2C800 /* UIImageToDataTransformer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -218,9 +218,9 @@
 				87ED8E3B15B15F9F00D2C800 /* YY.xcdatamodeld in Sources */,
 				87ED8E3E15B15F9F00D2C800 /* AlbumsListViewController.m in Sources */,
 				87ED8E4115B15F9F00D2C800 /* AlbumDetailViewController.m in Sources */,
-				87ED8E4E15B1662700D2C800 /* UIImageToDataTransformer.m in Sources */,
 				87ED8E5115B167C100D2C800 /* Album.m in Sources */,
 				87ED8E5415B1680500D2C800 /* Artist.m in Sources */,
+				87ED8E5A15B169E800D2C800 /* UIImageToDataTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 //
 
 #import "Album.h"
+#import "Artist.h"
+#import "UIImageToDataTransformer.h"
 
 
 @implementation Album
@@ -16,5 +18,13 @@
 @dynamic coverBig;
 @dynamic title;
 @dynamic artist;
+
+
++ (void)initialize {
+	if (self == [Album class]) {
+		UIImageToDataTransformer *transformer = [[UIImageToDataTransformer alloc] init];
+		[NSValueTransformer setValueTransformer:transformer forName:@"UIImageToDataTransformer"];
+	}
+}
 
 @end
