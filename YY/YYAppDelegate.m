@@ -83,8 +83,23 @@
         __managedObjectContext = [[NSManagedObjectContext alloc] init];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
+    
+    
+    //populate the data
+    NSArray *albums = [NSArray arrayWithObjects:@"album1",@"albums2", nil];
+    
+    for (NSString *title in albums){
+        //populate the data
+        NSManagedObject *object = [NSEntityDescription
+                               insertNewObjectForEntityForName:@"Album"
+                               inManagedObjectContext:__managedObjectContext]; 
+        [object setValue:title forKey:@"title"];
+    }
+    
+    //[self populateData];
     return __managedObjectContext;
 }
+
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
