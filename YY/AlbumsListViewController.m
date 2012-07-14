@@ -227,6 +227,7 @@
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"title"] description];
+    cell.imageView.image = [object valueForKey:@"coverThumbnail"];
 }
 
 @end

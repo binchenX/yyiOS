@@ -107,6 +107,8 @@
     
     [artist setValue:@"rock" forKey:@"gerne"];
     [artist setValue:@"douwei" forKey:@"name"];
+    
+    //UIImage *coverThumbnail 
   
     //populate the data
     NSArray *albums = [NSArray arrayWithObjects:@"album1",@"album2",@"album3", nil];
@@ -116,8 +118,13 @@
                                   insertNewObjectForEntityForName:@"Album"
                                   inManagedObjectContext:__managedObjectContext]; 
         
+        
+        NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
+        UIImage* coverThumbnail = [[UIImage alloc] initWithContentsOfFile:imagePath];
+        
         [album setValue:title forKey:@"title"];
         [album setValue:artist forKey:@"artist"];
+        [album setValue:coverThumbnail forKey:@"coverThumbnail"];
     }
     
     

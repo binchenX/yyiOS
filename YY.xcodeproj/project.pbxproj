@@ -21,6 +21,7 @@
 		87ED8E5115B167C100D2C800 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5015B167C100D2C800 /* Album.m */; };
 		87ED8E5415B1680500D2C800 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5315B1680500D2C800 /* Artist.m */; };
 		87ED8E5A15B169E800D2C800 /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */; };
+		87ED8E8D15B1B3B500D2C800 /* album1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87ED8E8C15B1B3B500D2C800 /* album1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		87ED8E5315B1680500D2C800 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Artist.m; path = YY/Artist.m; sourceTree = "<group>"; };
 		87ED8E5815B169E800D2C800 /* UIImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageToDataTransformer.h; path = YY/UIImageToDataTransformer.h; sourceTree = "<group>"; };
 		87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageToDataTransformer.m; path = YY/UIImageToDataTransformer.m; sourceTree = "<group>"; };
+		87ED8E8C15B1B3B500D2C800 /* album1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = album1.jpg; path = YY/album1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		87ED8E1315B15F9F00D2C800 = {
 			isa = PBXGroup;
 			children = (
+				87ED8E8C15B1B3B500D2C800 /* album1.jpg */,
 				87ED8E5715B1687E00D2C800 /* View Controller */,
 				87ED8E5615B1686300D2C800 /* Appliacation */,
 				87ED8E5515B1680F00D2C800 /* Model */,
@@ -203,6 +206,7 @@
 			files = (
 				87ED8E2F15B15F9F00D2C800 /* InfoPlist.strings in Resources */,
 				87ED8E3815B15F9F00D2C800 /* MainStoryboard.storyboard in Resources */,
+				87ED8E8D15B1B3B500D2C800 /* album1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
