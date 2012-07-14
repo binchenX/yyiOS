@@ -34,9 +34,9 @@
 		87ED8E3415B15F9F00D2C800 /* YYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYAppDelegate.m; sourceTree = "<group>"; };
 		87ED8E3715B15F9F00D2C800 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		87ED8E3A15B15F9F00D2C800 /* YY.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YY.xcdatamodel; sourceTree = "<group>"; };
-		87ED8E3C15B15F9F00D2C800 /* AlbumsListViewController.h */ = {isa = PBXFileReference; path = AlbumsListViewController.h; sourceTree = "<group>"; };
+		87ED8E3C15B15F9F00D2C800 /* AlbumsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumsListViewController.h; sourceTree = "<group>"; };
 		87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumsListViewController.m; sourceTree = "<group>"; };
-		87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */ = {isa = PBXFileReference; path = AlbumDetailViewController.h; sourceTree = "<group>"; };
+		87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumDetailViewController.h; sourceTree = "<group>"; };
 		87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
