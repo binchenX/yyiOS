@@ -13,6 +13,9 @@
 
 @interface Artist : NSManagedObject
 
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * gerne;
+
 @property (nonatomic, retain) Album *albums;
 
 @end

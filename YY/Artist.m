@@ -13,5 +13,7 @@
 @implementation Artist
 
 @dynamic albums;
+@dynamic name;
+@dynamic gerne;
 
 @end

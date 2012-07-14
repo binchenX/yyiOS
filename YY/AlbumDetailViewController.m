@@ -14,15 +14,15 @@
 
 @implementation AlbumDetailViewController
 
-@synthesize detailItem = _detailItem;
+@synthesize album = _album;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
+- (void)setAlbum:(id)newAlbum
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (_album != newAlbum) {
+        _album = newAlbum;
         
         // Update the view.
         [self configureView];
@@ -33,8 +33,14 @@
 {
     // Update the user interface for the detail item.
 
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"title"] description];
+    if (self.album) {
+        NSString * albumDetail = [NSString stringWithFormat:@"title %@:singer %@",
+                                  [self.album valueForKey:@"title" ],
+                                  [[self.album valueForKey:@"artist"] valueForKey:@"name"]
+                                  ];
+        
+        self.detailDescriptionLabel.text = albumDetail;
+       // self.detailDescriptionLabel.text = [[self.album valueForKey:@"title"] description];
     }
 }
 

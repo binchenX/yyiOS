@@ -83,21 +83,63 @@
         __managedObjectContext = [[NSManagedObjectContext alloc] init];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    
-    
-    //populate the data
-    NSArray *albums = [NSArray arrayWithObjects:@"album1",@"albums2", nil];
-    
-    for (NSString *title in albums){
-        //populate the data
-        NSManagedObject *object = [NSEntityDescription
-                               insertNewObjectForEntityForName:@"Album"
-                               inManagedObjectContext:__managedObjectContext]; 
-        [object setValue:title forKey:@"title"];
-    }
-    
+
+    [self populateData];
+
     //[self populateData];
     return __managedObjectContext;
+}
+
+
+#pragma mark - populate data
+
+/**
+ * to do populate it from JSON file
+ */
+
+- (void) populateData
+{
+    NSLog(@"will populate the database");
+    //populate the data
+    NSManagedObject *artist = [NSEntityDescription
+                               insertNewObjectForEntityForName:@"Artist"
+                               inManagedObjectContext:__managedObjectContext]; 
+    
+    [artist setValue:@"rock" forKey:@"gerne"];
+    [artist setValue:@"douwei" forKey:@"name"];
+  
+    //populate the data
+    NSArray *albums = [NSArray arrayWithObjects:@"album1",@"album2",@"album3", nil];
+    for (NSString *title in albums){
+        //populate the data
+        NSManagedObject *album = [NSEntityDescription
+                                  insertNewObjectForEntityForName:@"Album"
+                                  inManagedObjectContext:__managedObjectContext]; 
+        
+        [album setValue:title forKey:@"title"];
+        [album setValue:artist forKey:@"artist"];
+    }
+    
+    
+    //print out the data
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entry = [NSEntityDescription entityForName:@"Album" inManagedObjectContext:__managedObjectContext];
+    [request setEntity:entry];
+    NSError *error = nil;
+    NSArray *results = [__managedObjectContext executeFetchRequest:request error:&error];
+    
+    if(error){
+        abort();
+    }
+    
+    for(NSManagedObject *obj in results){
+       NSLog(@"album %@ artist %@",[obj valueForKey:@"title"] , 
+                                    [[obj valueForKey:@"artist"] valueForKey:@"name"]);
+        
+        if([obj valueForKey:@"artist"] == nil){
+            NSLog(@"artist for album %@ is nil" , [obj valueForKey:@"title"]);
+        }
+    }
 }
 
 

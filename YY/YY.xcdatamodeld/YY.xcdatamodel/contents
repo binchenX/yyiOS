@@ -9,6 +9,8 @@
         <relationship name="artist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="albums" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <entity name="Artist" representedClassName="Artist" syncable="YES">
+        <attribute name="gerne" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="albums" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="artist" inverseEntity="Album" syncable="YES"/>
     </entity>
     <entity name="Bar" syncable="YES"/>
@@ -17,11 +19,11 @@
     </entity>
     <entity name="Show" syncable="YES"/>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
-        <element name="Artist" positionX="160" positionY="192" width="128" height="60"/>
-        <element name="Album" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Bar" positionX="160" positionY="192" width="128" height="45"/>
-        <element name="Address" positionX="160" positionY="192" width="128" height="45"/>
-        <element name="Show" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="Address" positionX="117" positionY="117" width="128" height="45"/>
+        <element name="Album" positionX="394" positionY="180" width="128" height="120"/>
+        <element name="Artist" positionX="126" positionY="-60" width="117" height="60"/>
+        <element name="Bar" positionX="-81" positionY="171" width="128" height="45"/>
+        <element name="Event" positionX="394" positionY="18" width="128" height="60"/>
+        <element name="Show" positionX="-99" positionY="72" width="128" height="45"/>
     </elements>
 </model>
