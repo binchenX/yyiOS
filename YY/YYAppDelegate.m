@@ -23,6 +23,8 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     AlbumsListViewController *controller = (AlbumsListViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    
+    [self populateData];
     return YES;
 }
 							
@@ -84,7 +86,7 @@
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
 
-    [self populateData];
+    //[self populateData];
 
     //[self populateData];
     return __managedObjectContext;
@@ -103,7 +105,7 @@
     //populate the data
     NSManagedObject *artist = [NSEntityDescription
                                insertNewObjectForEntityForName:@"Artist"
-                               inManagedObjectContext:__managedObjectContext]; 
+                               inManagedObjectContext:self.managedObjectContext]; 
     
     [artist setValue:@"rock" forKey:@"gerne"];
     [artist setValue:@"douwei" forKey:@"name"];
@@ -116,7 +118,7 @@
         //populate the data
         NSManagedObject *album = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"Album"
-                                  inManagedObjectContext:__managedObjectContext]; 
+                                  inManagedObjectContext:self.managedObjectContext]; 
         
         
         NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
@@ -128,12 +130,14 @@
     }
     
     
+    //[self saveContext];
+    
     //print out the data
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entry = [NSEntityDescription entityForName:@"Album" inManagedObjectContext:__managedObjectContext];
+    NSEntityDescription *entry = [NSEntityDescription entityForName:@"Album" inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entry];
     NSError *error = nil;
-    NSArray *results = [__managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     if(error){
         abort();

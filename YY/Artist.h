@@ -13,9 +13,16 @@
 
 @interface Artist : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * gerne;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *albums;
+@end
 
-@property (nonatomic, retain) Album *albums;
+@interface Artist (CoreDataGeneratedAccessors)
+
+- (void)addAlbumsObject:(Album *)value;
+- (void)removeAlbumsObject:(Album *)value;
+- (void)addAlbums:(NSSet *)values;
+- (void)removeAlbums:(NSSet *)values;
 
 @end
