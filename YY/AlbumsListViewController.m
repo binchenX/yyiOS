@@ -6,15 +6,14 @@
 //  Copyright (c) 2012年 Tencent. All rights reserved.
 //
 
-#import "YYMasterViewController.h"
+#import "AlbumsListViewController.h"
+#import "AlbumDetailViewController.h"
 
-#import "YYDetailViewController.h"
-
-@interface YYMasterViewController ()
+@interface AlbumsListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation YYMasterViewController
+@implementation AlbumsListViewController
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;

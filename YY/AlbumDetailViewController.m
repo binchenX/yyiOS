@@ -6,13 +6,13 @@
 //  Copyright (c) 2012年 Tencent. All rights reserved.
 //
 
-#import "YYDetailViewController.h"
+#import "AlbumDetailViewController.h"
 
-@interface YYDetailViewController ()
+@interface AlbumDetailViewController ()
 - (void)configureView;
 @end
 
-@implementation YYDetailViewController
+@implementation AlbumDetailViewController
 
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;

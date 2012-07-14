@@ -8,7 +8,7 @@
 
 #import "YYAppDelegate.h"
 
-#import "YYMasterViewController.h"
+#import "AlbumsListViewController.h"
 
 @implementation YYAppDelegate
 
@@ -21,7 +21,7 @@
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    YYMasterViewController *controller = (YYMasterViewController *)navigationController.topViewController;
+    AlbumsListViewController *controller = (AlbumsListViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }

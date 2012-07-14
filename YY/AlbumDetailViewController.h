@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YYDetailViewController : UIViewController
+@interface AlbumDetailViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
 

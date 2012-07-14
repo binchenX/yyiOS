@@ -16,8 +16,8 @@
 		87ED8E3515B15F9F00D2C800 /* YYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E3415B15F9F00D2C800 /* YYAppDelegate.m */; };
 		87ED8E3815B15F9F00D2C800 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87ED8E3615B15F9F00D2C800 /* MainStoryboard.storyboard */; };
 		87ED8E3B15B15F9F00D2C800 /* YY.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E3915B15F9F00D2C800 /* YY.xcdatamodeld */; };
-		87ED8E3E15B15F9F00D2C800 /* YYMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E3D15B15F9F00D2C800 /* YYMasterViewController.m */; };
-		87ED8E4115B15F9F00D2C800 /* YYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E4015B15F9F00D2C800 /* YYDetailViewController.m */; };
+		87ED8E3E15B15F9F00D2C800 /* AlbumsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */; };
+		87ED8E4115B15F9F00D2C800 /* AlbumDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,18 +26,18 @@
 		87ED8E2415B15F9F00D2C800 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		87ED8E2615B15F9F00D2C800 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		87ED8E2815B15F9F00D2C800 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		87ED8E2C15B15F9F00D2C800 /* YY-Info.plist */ = {isa = PBXFileReference; path = "YY-Info.plist"; sourceTree = "<group>"; };
+		87ED8E2C15B15F9F00D2C800 /* YY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YY-Info.plist"; sourceTree = "<group>"; };
 		87ED8E2E15B15F9F00D2C800 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87ED8E3015B15F9F00D2C800 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		87ED8E3215B15F9F00D2C800 /* YY-Prefix.pch */ = {isa = PBXFileReference; path = "YY-Prefix.pch"; sourceTree = "<group>"; };
-		87ED8E3315B15F9F00D2C800 /* YYAppDelegate.h */ = {isa = PBXFileReference; path = YYAppDelegate.h; sourceTree = "<group>"; };
+		87ED8E3215B15F9F00D2C800 /* YY-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YY-Prefix.pch"; sourceTree = "<group>"; };
+		87ED8E3315B15F9F00D2C800 /* YYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYAppDelegate.h; sourceTree = "<group>"; };
 		87ED8E3415B15F9F00D2C800 /* YYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYAppDelegate.m; sourceTree = "<group>"; };
 		87ED8E3715B15F9F00D2C800 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		87ED8E3A15B15F9F00D2C800 /* YY.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YY.xcdatamodel; sourceTree = "<group>"; };
-		87ED8E3C15B15F9F00D2C800 /* YYMasterViewController.h */ = {isa = PBXFileReference; path = YYMasterViewController.h; sourceTree = "<group>"; };
-		87ED8E3D15B15F9F00D2C800 /* YYMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYMasterViewController.m; sourceTree = "<group>"; };
-		87ED8E3F15B15F9F00D2C800 /* YYDetailViewController.h */ = {isa = PBXFileReference; path = YYDetailViewController.h; sourceTree = "<group>"; };
-		87ED8E4015B15F9F00D2C800 /* YYDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYDetailViewController.m; sourceTree = "<group>"; };
+		87ED8E3C15B15F9F00D2C800 /* AlbumsListViewController.h */ = {isa = PBXFileReference; path = AlbumsListViewController.h; sourceTree = "<group>"; };
+		87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumsListViewController.m; sourceTree = "<group>"; };
+		87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */ = {isa = PBXFileReference; path = AlbumDetailViewController.h; sourceTree = "<group>"; };
+		87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +89,10 @@
 				87ED8E3315B15F9F00D2C800 /* YYAppDelegate.h */,
 				87ED8E3415B15F9F00D2C800 /* YYAppDelegate.m */,
 				87ED8E3615B15F9F00D2C800 /* MainStoryboard.storyboard */,
-				87ED8E3C15B15F9F00D2C800 /* YYMasterViewController.h */,
-				87ED8E3D15B15F9F00D2C800 /* YYMasterViewController.m */,
-				87ED8E3F15B15F9F00D2C800 /* YYDetailViewController.h */,
-				87ED8E4015B15F9F00D2C800 /* YYDetailViewController.m */,
+				87ED8E3C15B15F9F00D2C800 /* AlbumsListViewController.h */,
+				87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */,
+				87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */,
+				87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */,
 				87ED8E3915B15F9F00D2C800 /* YY.xcdatamodeld */,
 				87ED8E2B15B15F9F00D2C800 /* Supporting Files */,
 			);
@@ -177,8 +177,8 @@
 				87ED8E3115B15F9F00D2C800 /* main.m in Sources */,
 				87ED8E3515B15F9F00D2C800 /* YYAppDelegate.m in Sources */,
 				87ED8E3B15B15F9F00D2C800 /* YY.xcdatamodeld in Sources */,
-				87ED8E3E15B15F9F00D2C800 /* YYMasterViewController.m in Sources */,
-				87ED8E4115B15F9F00D2C800 /* YYDetailViewController.m in Sources */,
+				87ED8E3E15B15F9F00D2C800 /* AlbumsListViewController.m in Sources */,
+				87ED8E4115B15F9F00D2C800 /* AlbumDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +290,7 @@
 				87ED8E4615B15F9F00D2C800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
