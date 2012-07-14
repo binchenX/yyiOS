@@ -7,6 +7,8 @@
 //
 
 #import "YYAppDelegate.h"
+#import "Artist.h"
+#import "Album.h"
 
 #import "AlbumsListViewController.h"
 
@@ -103,12 +105,15 @@
 {
     NSLog(@"will populate the database");
     //populate the data
-    NSManagedObject *artist = [NSEntityDescription
+    Artist *artist = (Artist *)[NSEntityDescription
                                insertNewObjectForEntityForName:@"Artist"
                                inManagedObjectContext:self.managedObjectContext]; 
     
-    [artist setValue:@"rock" forKey:@"gerne"];
-    [artist setValue:@"douwei" forKey:@"name"];
+    //[artist setValue:@"rock" forKey:@"gerne"];
+    //[artist setValue:@"douwei" forKey:@"name"];
+    
+    artist.gerne = @"rock";
+    artist.name  = @"douwei";
     
     //UIImage *coverThumbnail 
   
@@ -116,7 +121,7 @@
     NSArray *albums = [NSArray arrayWithObjects:@"album1",@"album2",@"album3", nil];
     for (NSString *title in albums){
         //populate the data
-        NSManagedObject *album = [NSEntityDescription
+        Album *album = (Album *)[NSEntityDescription
                                   insertNewObjectForEntityForName:@"Album"
                                   inManagedObjectContext:self.managedObjectContext]; 
         
@@ -124,33 +129,36 @@
         NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
         UIImage* coverThumbnail = [[UIImage alloc] initWithContentsOfFile:imagePath];
         
-        [album setValue:title forKey:@"title"];
-        [album setValue:artist forKey:@"artist"];
-        [album setValue:coverThumbnail forKey:@"coverThumbnail"];
+        //[album setValue:title forKey:@"title"];
+        //[album setValue:artist forKey:@"artist"];
+        //[album setValue:coverThumbnail forKey:@"coverThumbnail"];
+        album.title = title;
+        album.artist = artist;
+        album.coverThumbnail = coverThumbnail;
     }
-    
-    
+
+    //When following is excuted, the sample data will be persitented and accmulated.
     //[self saveContext];
     
     //print out the data
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entry = [NSEntityDescription entityForName:@"Album" inManagedObjectContext:self.managedObjectContext];
-    [request setEntity:entry];
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    if(error){
-        abort();
-    }
-    
-    for(NSManagedObject *obj in results){
-       NSLog(@"album %@ artist %@",[obj valueForKey:@"title"] , 
-                                    [[obj valueForKey:@"artist"] valueForKey:@"name"]);
-        
-        if([obj valueForKey:@"artist"] == nil){
-            NSLog(@"artist for album %@ is nil" , [obj valueForKey:@"title"]);
-        }
-    }
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entry = [NSEntityDescription entityForName:@"Album" inManagedObjectContext:self.managedObjectContext];
+//    [request setEntity:entry];
+//    NSError *error = nil;
+//    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+//    
+//    if(error){
+//        abort();
+//    }
+//    
+//    for(NSManagedObject *obj in results){
+//       NSLog(@"album %@ artist %@",[obj valueForKey:@"title"] , 
+//                                    [[obj valueForKey:@"artist"] valueForKey:@"name"]);
+//        
+//        if([obj valueForKey:@"artist"] == nil){
+//            NSLog(@"artist for album %@ is nil" , [obj valueForKey:@"title"]);
+//        }
+//    }
 }
 
 
