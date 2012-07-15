@@ -14,6 +14,6 @@
 
 @property (strong, nonatomic) id album;
 
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+//@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end

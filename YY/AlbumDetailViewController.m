@@ -15,7 +15,7 @@
 @implementation AlbumDetailViewController
 
 @synthesize album = _album;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+//@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
 #pragma mark - Managing the detail item
 
@@ -39,7 +39,7 @@
                                   [[self.album valueForKey:@"artist"] valueForKey:@"name"]
                                   ];
         
-        self.detailDescriptionLabel.text = albumDetail;
+        //self.detailDescriptionLabel.text = albumDetail;
        // self.detailDescriptionLabel.text = [[self.album valueForKey:@"title"] description];
     }
 }
@@ -55,7 +55,7 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
+   // self.detailDescriptionLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		873822DC15B26F02006C9EE1 /* album_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 873822DB15B26F02006C9EE1 /* album_big.png */; };
 		87ED8E2315B15F9F00D2C800 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ED8E2215B15F9F00D2C800 /* UIKit.framework */; };
 		87ED8E2515B15F9F00D2C800 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ED8E2415B15F9F00D2C800 /* Foundation.framework */; };
 		87ED8E2715B15F9F00D2C800 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ED8E2615B15F9F00D2C800 /* CoreGraphics.framework */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		873822DB15B26F02006C9EE1 /* album_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album_big.png; sourceTree = "<group>"; };
 		87ED8E1E15B15F9F00D2C800 /* YY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87ED8E2215B15F9F00D2C800 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		87ED8E2415B15F9F00D2C800 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				87ED8E8C15B1B3B500D2C800 /* album1.jpg */,
+				873822DB15B26F02006C9EE1 /* album_big.png */,
 				87ED8E5715B1687E00D2C800 /* View Controller */,
 				87ED8E5615B1686300D2C800 /* Appliacation */,
 				87ED8E5515B1680F00D2C800 /* Model */,
@@ -207,6 +210,7 @@
 				87ED8E2F15B15F9F00D2C800 /* InfoPlist.strings in Resources */,
 				87ED8E3815B15F9F00D2C800 /* MainStoryboard.storyboard in Resources */,
 				87ED8E8D15B1B3B500D2C800 /* album1.jpg in Resources */,
+				873822DC15B26F02006C9EE1 /* album_big.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
