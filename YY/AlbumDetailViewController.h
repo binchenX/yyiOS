@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) Album * album;
 
-@property (strong, nonatomic) IBOutlet UILabel *summary;
+@property (strong, nonatomic) IBOutlet UITextView *summary;
 
 //@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 

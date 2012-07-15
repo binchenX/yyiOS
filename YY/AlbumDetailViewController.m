@@ -60,6 +60,7 @@
 - (void)viewDidUnload
 {
     [self setSummary:nil];
+    [self setSummary:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
    // self.detailDescriptionLabel = nil;
