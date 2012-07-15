@@ -23,6 +23,7 @@
 		87ED8E5415B1680500D2C800 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5315B1680500D2C800 /* Artist.m */; };
 		87ED8E5A15B169E800D2C800 /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */; };
 		87ED8E8D15B1B3B500D2C800 /* album1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87ED8E8C15B1B3B500D2C800 /* album1.jpg */; };
+		87FDC05B15B271FC0075FBD0 /* AlbumWebResouceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		87ED8E5815B169E800D2C800 /* UIImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageToDataTransformer.h; path = YY/UIImageToDataTransformer.h; sourceTree = "<group>"; };
 		87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageToDataTransformer.m; path = YY/UIImageToDataTransformer.m; sourceTree = "<group>"; };
 		87ED8E8C15B1B3B500D2C800 /* album1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = album1.jpg; path = YY/album1.jpg; sourceTree = "<group>"; };
+		87FDC05915B271FC0075FBD0 /* AlbumWebResouceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumWebResouceViewController.h; path = YY/AlbumWebResouceViewController.h; sourceTree = "<group>"; };
+		87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumWebResouceViewController.m; path = YY/AlbumWebResouceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				87ED8E3C15B15F9F00D2C800 /* AlbumsListViewController.h */,
 				87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */,
 				87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */,
+				87FDC05915B271FC0075FBD0 /* AlbumWebResouceViewController.h */,
+				87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */,
 				87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */,
 			);
 			name = "View Controller";
@@ -229,6 +234,7 @@
 				87ED8E5115B167C100D2C800 /* Album.m in Sources */,
 				87ED8E5415B1680500D2C800 /* Artist.m in Sources */,
 				87ED8E5A15B169E800D2C800 /* UIImageToDataTransformer.m in Sources */,
+				87FDC05B15B271FC0075FBD0 /* AlbumWebResouceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

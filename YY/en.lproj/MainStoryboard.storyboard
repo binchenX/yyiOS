@@ -19,7 +19,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-1" y="64"/>
+            <point key="canvasLocation" x="-445" y="60"/>
         </scene>
         <!--Albums List View Controller - Master-->
         <scene sceneID="18">
@@ -75,7 +75,7 @@
                     <navigationItem key="navigationItem" title="专辑列表" id="36"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="459" y="64"/>
+            <point key="canvasLocation" x="15" y="60"/>
         </scene>
         <!--Album Detail View Controller - Detail-->
         <scene sceneID="24">
@@ -103,7 +103,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gcu-Zx-s0I">
-                                        <rect key="frame" x="6" y="189" width="72" height="37"/>
+                                        <rect key="frame" x="0.0" y="189" width="72" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="试听">
@@ -113,6 +113,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="GSi-CI-op4" kind="push" identifier="tryListen" id="MZv-Vd-wlX"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mzd-3E-65L">
                                         <rect key="frame" x="119" y="189" width="72" height="37"/>
@@ -147,7 +150,32 @@
                     <navigationItem key="navigationItem" title="专辑详情" id="26"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="902" y="64"/>
+            <point key="canvasLocation" x="458" y="60"/>
+        </scene>
+        <!--Album Web Resouce View Controller-->
+        <scene sceneID="dKk-fK-MFD">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="duL-ao-m8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="GSi-CI-op4" customClass="AlbumWebResouceViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="70z-NZ-1mD">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" id="hO5-Rq-ydz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DXu-5n-CyL"/>
+                    <connections>
+                        <outlet property="webView" destination="hO5-Rq-ydz" id="RBu-OK-7Q5"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="929" y="55"/>
         </scene>
     </scenes>
     <resources>
@@ -157,6 +185,12 @@
     <classes>
         <class className="AlbumDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
+        </class>
+        <class className="AlbumWebResouceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
         </class>
         <class className="AlbumsListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumsListViewController.h"/>
