@@ -7,6 +7,7 @@
 //
 
 #import "AlbumDetailViewController.h"
+#import "AlbumWebResouceViewController.h"
 
 @interface AlbumDetailViewController ()
 - (void)configureView;
@@ -61,6 +62,18 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+
+#pragma mark - segue management
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"tryListen"]){
+        AlbumWebResouceViewController * destViewController = (AlbumWebResouceViewController*)[segue destinationViewController];
+        //TODO
+        destViewController.urlString = @"http://www.apple.com";
+    }
 }
 
 @end

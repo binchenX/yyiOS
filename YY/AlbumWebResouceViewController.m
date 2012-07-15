@@ -29,11 +29,7 @@
 {
     [super viewWillAppear:animated];
     
-    //self.urlString = @"www.google.com";
-    
-   // [[self.webView] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
-    
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.apple.com/"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
 }
 
 - (void)viewDidLoad
