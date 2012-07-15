@@ -18,6 +18,8 @@
 @dynamic coverBig;
 @dynamic title;
 @dynamic artist;
+@dynamic listenUrl;
+@dynamic downloadUrl;
 
 
 + (void)initialize {

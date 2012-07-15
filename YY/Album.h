@@ -17,5 +17,7 @@
 @property (nonatomic, retain) id coverBig;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) Artist *artist;
+@property (nonatomic, retain) NSString * downloadUrl;
+@property (nonatomic, retain) NSString * listenUrl;
 
 @end

@@ -77,8 +77,8 @@
 {
     if([[segue identifier] isEqualToString:@"tryListen"]){
         AlbumWebResouceViewController * destViewController = (AlbumWebResouceViewController*)[segue destinationViewController];
-        //TODO
-        destViewController.urlString = @"http://www.apple.com";
+        destViewController.urlString = self.album.listenUrl;
+        destViewController.navigationItem.title = [destViewController.navigationItem.title stringByAppendingString:self.album.title];
     }
 }
 

@@ -127,12 +127,11 @@
         NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
         UIImage* coverThumbnail = [[UIImage alloc] initWithContentsOfFile:imagePath];
         
-        //[album setValue:title forKey:@"title"];
-        //[album setValue:artist forKey:@"artist"];
-        //[album setValue:coverThumbnail forKey:@"coverThumbnail"];
         album.title = title;
         album.artist = artist;
         album.coverThumbnail = coverThumbnail;
+        album.downloadUrl = @"http://www.apple.com";
+        album.listenUrl = @"http://www.apple.com";
     }
 
     //When following is excuted, the sample data will be persitented and accmulated.
