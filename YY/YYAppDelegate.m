@@ -130,8 +130,8 @@
         album.title = title;
         album.artist = artist;
         album.coverThumbnail = coverThumbnail;
-        album.downloadUrl = @"http://www.apple.com";
-        album.listenUrl = @"http://www.apple.com";
+        album.downloadUrl = @"http://www.baidu.com";
+        album.listenUrl = @"http://www.baidu.com";
     }
 
     //When following is excuted, the sample data will be persitented and accmulated.
