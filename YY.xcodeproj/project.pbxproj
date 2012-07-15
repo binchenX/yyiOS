@@ -153,9 +153,9 @@
 				87ED8E3C15B15F9F00D2C800 /* AlbumsListViewController.h */,
 				87ED8E3D15B15F9F00D2C800 /* AlbumsListViewController.m */,
 				87ED8E3F15B15F9F00D2C800 /* AlbumDetailViewController.h */,
+				87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */,
 				87FDC05915B271FC0075FBD0 /* AlbumWebResouceViewController.h */,
 				87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */,
-				87ED8E4015B15F9F00D2C800 /* AlbumDetailViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";

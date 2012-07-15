@@ -8,6 +8,8 @@
 
 #import "AlbumDetailViewController.h"
 #import "AlbumWebResouceViewController.h"
+#import "Album.h"
+#import "Artist.h"
 
 @interface AlbumDetailViewController ()
 - (void)configureView;
@@ -16,6 +18,7 @@
 @implementation AlbumDetailViewController
 
 @synthesize album = _album;
+@synthesize summary = _summary;
 //@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
 #pragma mark - Managing the detail item
@@ -32,16 +35,18 @@
 
 - (void)configureView
 {
-    // Update the user interface for the detail item.
+    
+        // Update the user interface for the detail item.
 
     if (self.album) {
-        NSString * albumDetail = [NSString stringWithFormat:@"title %@:singer %@",
-                                  [self.album valueForKey:@"title" ],
-                                  [[self.album valueForKey:@"artist"] valueForKey:@"name"]
-                                  ];
+        //setup the navigation item
+        self.navigationItem.title = self.album.title;
         
-        //self.detailDescriptionLabel.text = albumDetail;
-       // self.detailDescriptionLabel.text = [[self.album valueForKey:@"title"] description];
+        //setup the summary
+        NSString * albumDetail = [NSString stringWithFormat:@"title %@:singer %@",
+                                  self.album.title ,
+                                  self.album.artist.name];
+        self.summary.text = albumDetail;                              
     }
 }
 
@@ -54,6 +59,7 @@
 
 - (void)viewDidUnload
 {
+    [self setSummary:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
    // self.detailDescriptionLabel = nil;

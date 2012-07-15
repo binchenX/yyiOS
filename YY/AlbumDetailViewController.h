@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-//@class Album;
+@class Album;
 
 @interface AlbumDetailViewController : UIViewController
 
-@property (strong, nonatomic) id album;
+@property (strong, nonatomic) Album * album;
+
+@property (strong, nonatomic) IBOutlet UILabel *summary;
 
 //@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 

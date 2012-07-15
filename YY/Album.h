@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
+@class Artist;
 @interface Album : NSManagedObject
 
 @property (nonatomic, retain) NSDate * releaseDate;
 @property (nonatomic, retain) id coverThumbnail;
 @property (nonatomic, retain) id coverBig;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSManagedObject *artist;
+@property (nonatomic, retain) Artist *artist;
 
 @end

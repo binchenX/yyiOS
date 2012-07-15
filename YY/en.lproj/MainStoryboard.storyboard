@@ -94,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="184"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Intro" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="vIE-6I-Fuq">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" text="Intro" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" minimumFontSize="4" id="vIE-6I-Fuq">
                                         <rect key="frame" x="0.0" y="228" width="325" height="277"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -148,6 +148,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="专辑详情" id="26"/>
+                    <connections>
+                        <outlet property="summary" destination="vIE-6I-Fuq" id="Sjv-wi-WCU"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="458" y="60"/>
@@ -185,6 +188,9 @@
     <classes>
         <class className="AlbumDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="summary" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="AlbumWebResouceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
