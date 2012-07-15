@@ -29,6 +29,8 @@
 {
     [super viewWillAppear:animated];
     
+    self.webView.delegate = self;
+    
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
 }
 
@@ -52,6 +54,7 @@
 
 
 #pragma mark - UIWebViewDelegate
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     // starting the load, show the activity indicator in the status bar

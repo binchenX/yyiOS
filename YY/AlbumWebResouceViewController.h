@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlbumWebResouceViewController : UIViewController
+@interface AlbumWebResouceViewController : UIViewController <UIWebViewDelegate> 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @property (nonatomic,copy) NSString *urlString;

@@ -94,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="184"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" text="Intro" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" minimumFontSize="4" id="vIE-6I-Fuq">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Intro" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" minimumFontSize="4" id="vIE-6I-Fuq">
                                         <rect key="frame" x="0.0" y="228" width="325" height="277"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -155,7 +155,7 @@
             </objects>
             <point key="canvasLocation" x="458" y="60"/>
         </scene>
-        <!--Album Web Resouce View Controller-->
+        <!--Album Web Resouce View Controller - 试听-->
         <scene sceneID="dKk-fK-MFD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duL-ao-m8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -172,7 +172,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DXu-5n-CyL"/>
+                    <navigationItem key="navigationItem" title="试听" id="DXu-5n-CyL"/>
                     <connections>
                         <outlet property="webView" destination="hO5-Rq-ydz" id="RBu-OK-7Q5"/>
                     </connections>
