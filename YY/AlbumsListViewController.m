@@ -9,6 +9,9 @@
 #import "AlbumsListViewController.h"
 #import "AlbumDetailViewController.h"
 
+#import "Album.h"
+#import "Artist.h"
+
 @interface AlbumsListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -18,6 +21,8 @@
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 
+
+#pragma mark - view life cycle management
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -29,7 +34,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+        target:self action:@selector(updateAlbums:)];
     self.navigationItem.rightBarButtonItem = addButton;
 }
 
@@ -44,15 +50,29 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)insertNewObject:(id)sender
+
+#pragma mark - update action
+- (void)updateAlbums:(id)sender
 {
+    
+    //TODO:get update from web service... now we just add one more
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    newAlbum.title = @"Beatles";
+    
+    Artist *artist = (Artist *)[NSEntityDescription
+                                insertNewObjectForEntityForName:@"Artist"
+                                inManagedObjectContext:self.managedObjectContext]; 
+    
+    
+    artist.gerne = @"rock";
+    artist.name  = @"Beatles";
+    
+    newAlbum.artist = artist;
     
     // Save the context.
     NSError *error = nil;
@@ -112,6 +132,10 @@
     return NO;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return tableView.bounds.size.height / 4 ;
+}
 
 #pragma mark - segue management
 

@@ -109,8 +109,6 @@
                                insertNewObjectForEntityForName:@"Artist"
                                inManagedObjectContext:self.managedObjectContext]; 
     
-    //[artist setValue:@"rock" forKey:@"gerne"];
-    //[artist setValue:@"douwei" forKey:@"name"];
     
     artist.gerne = @"rock";
     artist.name  = @"douwei";
