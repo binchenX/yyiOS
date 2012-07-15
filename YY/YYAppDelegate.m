@@ -22,9 +22,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    AlbumsListViewController *controller = (AlbumsListViewController *)navigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    NSArray *viewControllers = tabBarController.viewControllers;
+    
+    AlbumsListViewController *albumListViewController = (AlbumsListViewController*)[(UINavigationController*)[viewControllers objectAtIndex:0] topViewController];
+
+    albumListViewController.managedObjectContext = self.managedObjectContext;
     
     [self populateData];
     return YES;
