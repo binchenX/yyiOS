@@ -125,6 +125,27 @@
     
     //parse the data and save it to the ObjectContext
     NSLog(@"finish download the data ,will update local db");
+    NSError *error = nil;
+    NSArray *posts = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(error){
+        abort();
+    }
+    
+    if(![NSJSONSerialization isValidJSONObject:posts])
+    {
+        NSLog(@"Not valid JSON object");
+        return;
+    }
+    NSLog(@"get %d posts" , [posts count]);
+    
+    //save those posts
+    for (NSDictionary *post in posts){
+        NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
+        NSString *title = [album objectForKey:@"title"];
+        NSLog(@"get post %@",title);
+    }
+    
+    
     
 }
 
