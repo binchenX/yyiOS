@@ -13,7 +13,12 @@
 #import "Artist.h"
 
 @interface AlbumsListViewController ()
+{
+    NSMutableData *jsonData;
+    NSURLConnection *connection;
+}
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation AlbumsListViewController
@@ -55,34 +60,79 @@
 - (void)updateAlbums:(id)sender
 {
     
-    //TODO:get update from web service... now we just add one more
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    [self fetchUpdateFromServer];
     
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    newAlbum.title = @"Beatles";
-    
-    Artist *artist = (Artist *)[NSEntityDescription
-                                insertNewObjectForEntityForName:@"Artist"
-                                inManagedObjectContext:self.managedObjectContext]; 
-    
-    
-    artist.gerne = @"rock";
-    artist.name  = @"Beatles";
-    
-    newAlbum.artist = artist;
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+//    //TODO:get update from web service... now we just add one more
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+//    Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+//    
+//    // If appropriate, configure the new managed object.
+//    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+//    newAlbum.title = @"Beatles";
+//    
+//    Artist *artist = (Artist *)[NSEntityDescription
+//                                insertNewObjectForEntityForName:@"Artist"
+//                                inManagedObjectContext:self.managedObjectContext]; 
+//    
+//    
+//    artist.gerne = @"rock";
+//    artist.name  = @"Beatles";
+//    
+//    newAlbum.artist = artist;
+//    
+//    // Save the context.
+//    NSError *error = nil;
+//    if (![context save:&error]) {
+//         // Replace this implementation with code to handle the error appropriately.
+//         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//    }
 }
+
+- (void)fetchUpdateFromServer
+{
+    
+    jsonData = [[NSMutableData alloc] init];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:3000/api?tag=show&since=2011-20"]];
+    
+    connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
+    
+    
+}
+
+
+
+#pragma mark URLConnectionDataDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    
+    
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"receive data");
+    [jsonData appendData:data];
+    
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
+    //parse the data and save it to the ObjectContext
+    NSLog(@"finish download the data ,will update local db");
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    
+}
+
 
 #pragma mark - Table View data source delegate
 

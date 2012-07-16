@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface AlbumsListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface AlbumsListViewController : UITableViewController <NSFetchedResultsControllerDelegate, NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
