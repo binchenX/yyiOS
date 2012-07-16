@@ -64,13 +64,14 @@
 }
 
 
-- (void)insertAlbumWithTitle:(NSString*)title
+- (void)insertAlbumWithTitle:(NSString*)title andDetail:(NSString *)detail
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 
     newAlbum.title = title;    
+    newAlbum.detail = detail;
     Artist *artist = (Artist *)[NSEntityDescription
                                 insertNewObjectForEntityForName:@"Artist"
                                 inManagedObjectContext:self.managedObjectContext]; 
@@ -140,8 +141,10 @@
     for (NSDictionary *post in posts){
         NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
         NSString *title = [album objectForKey:@"title"];
+        NSString *detail = [album objectForKey:@"content"];
         NSLog(@"get post %@",title);
-        [self insertAlbumWithTitle:title]; 
+        [self insertAlbumWithTitle:title
+                            andDetail:detail]; 
     }
     
     

@@ -20,6 +20,7 @@
 @dynamic artist;
 @dynamic listenUrl;
 @dynamic downloadUrl;
+@dynamic detail;
 
 
 + (void)initialize {

@@ -46,6 +46,10 @@
         NSString * albumDetail = [NSString stringWithFormat:@"title %@:singer %@",
                                   self.album.title ,
                                   self.album.artist.name];
+        
+        if(self.album.detail!=nil){
+            albumDetail = [albumDetail stringByAppendingString:self.album.detail];
+        }
         self.summary.text = albumDetail;                              
     }
 }

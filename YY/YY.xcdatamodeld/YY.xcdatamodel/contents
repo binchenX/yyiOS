@@ -4,6 +4,7 @@
     <entity name="Album" representedClassName="Album" syncable="YES">
         <attribute name="coverBig" optional="YES" attributeType="Transformable" valueTransformerName="UIImageToDataTransformer" syncable="YES"/>
         <attribute name="coverThumbnail" optional="YES" attributeType="Transformable" valueTransformerName="UIImageToDataTransformer" syncable="YES"/>
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="downloadUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="listenUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -22,7 +23,7 @@
     <entity name="Show" syncable="YES"/>
     <elements>
         <element name="Address" positionX="54" positionY="108" width="128" height="45"/>
-        <element name="Album" positionX="394" positionY="180" width="128" height="150"/>
+        <element name="Album" positionX="394" positionY="180" width="128" height="165"/>
         <element name="Artist" positionX="117" positionY="189" width="117" height="90"/>
         <element name="Bar" positionX="-81" positionY="171" width="128" height="45"/>
         <element name="Event" positionX="394" positionY="18" width="128" height="60"/>
