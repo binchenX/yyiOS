@@ -91,6 +91,33 @@
 
 }
 
+- (BOOL) albumDoesNotExsitByTitle:(NSString*)albumTitle
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Album" inManagedObjectContext:self.managedObjectContext];
+    
+    //can not use block predict with fetch request
+    //check http://stackoverflow.com/questions/3543208/nsfetchrequest-and-predicatewithblock
+//    NSPredicate *predict = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary * bindings){
+//        Album * album = (Album*)evaluatedObject;
+//        return [album.title isEqualToString:albumTitle];
+//    }];
+    
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"title ==  %@",albumTitle];
+    
+    [request setEntity:entity];
+    [request setPredicate:predict];
+    
+    NSError *error = nil;
+    
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
+    
+    if(error || (count == 0)){
+        return YES;
+    }
+    return NO;
+}
+
 - (void)fetchUpdateFromServer
 {
     
@@ -143,8 +170,11 @@
         NSString *title = [album objectForKey:@"title"];
         NSString *detail = [album objectForKey:@"content"];
         NSLog(@"get post %@",title);
-        [self insertAlbumWithTitle:title
-                            andDetail:detail]; 
+        if([self albumDoesNotExsitByTitle:title]){
+            [self insertAlbumWithTitle:title   andDetail:detail]; 
+        }else {
+            NSLog(@"album already exsit");
+        }
     }
     
     
