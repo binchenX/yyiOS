@@ -17,6 +17,7 @@
     NSMutableData *jsonData;
     NSURLConnection *connection;
     NSDateFormatter * rfc3339DateFormatter;
+    NSDateFormatter * userVisiableDateFormatter;
     
 }
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -233,13 +234,22 @@
     return cell;
 }
 
+- (NSDateFormatter*)userVisiableDateFormatter
+{
+    if(userVisiableDateFormatter == nil){
+        userVisiableDateFormatter = [[NSDateFormatter alloc] init];
+        [userVisiableDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    }
+    
+    return userVisiableDateFormatter;
+    
+}
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Album *album = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [album.title description];    
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd"];
-    cell.detailTextLabel.text = [df stringFromDate:album.releaseDate];
+    cell.detailTextLabel.text = [self.userVisiableDateFormatter stringFromDate:album.releaseDate];
     cell.imageView.image = album.coverThumbnail;
 }
 
