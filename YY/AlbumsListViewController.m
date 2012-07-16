@@ -16,6 +16,8 @@
 {
     NSMutableData *jsonData;
     NSURLConnection *connection;
+    NSDateFormatter * rfc3339DateFormatter;
+    
 }
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
@@ -64,7 +66,9 @@
 }
 
 
-- (void)insertAlbumWithTitle:(NSString*)title andDetail:(NSString *)detail
+- (void)insertAlbumWithTitle:(NSString*)title 
+                   andDetail:(NSString *)detail 
+                 releaseDate:(NSDate*)releaseDate
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -72,6 +76,8 @@
 
     newAlbum.title = title;    
     newAlbum.detail = detail;
+    newAlbum.releaseDate = releaseDate;
+    
     Artist *artist = (Artist *)[NSEntityDescription
                                 insertNewObjectForEntityForName:@"Artist"
                                 inManagedObjectContext:self.managedObjectContext]; 
@@ -147,6 +153,22 @@
     
 }
 
+- (NSDateFormatter*) rfc3339DateFormatter
+{    
+    if (rfc3339DateFormatter == nil) {
+        NSLocale *                  enUSPOSIXLocale;
+        
+        rfc3339DateFormatter = [[NSDateFormatter alloc] init];
+        enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        
+        [rfc3339DateFormatter setLocale:enUSPOSIXLocale];
+        [rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+        [rfc3339DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    }
+    
+    return rfc3339DateFormatter;
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     
@@ -169,9 +191,13 @@
         NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
         NSString *title = [album objectForKey:@"title"];
         NSString *detail = [album objectForKey:@"content"];
+        NSString *releaseDate = [album objectForKey:@"happen_at"];
+        
         NSLog(@"get post %@",title);
         if([self albumDoesNotExsitByTitle:title]){
-            [self insertAlbumWithTitle:title   andDetail:detail]; 
+            [self insertAlbumWithTitle:title   
+                             andDetail:detail 
+                           releaseDate:[self.rfc3339DateFormatter dateFromString:releaseDate]]; 
         }else {
             NSLog(@"album already exsit");
         }
@@ -209,10 +235,12 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"title"] description];
-    cell.detailTextLabel.text = @"detailDescription"; //TODO
-    cell.imageView.image = [object valueForKey:@"coverThumbnail"];
+    Album *album = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [album.title description];    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    cell.detailTextLabel.text = [df stringFromDate:album.releaseDate];
+    cell.imageView.image = album.coverThumbnail;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
