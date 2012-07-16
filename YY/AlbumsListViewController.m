@@ -61,34 +61,33 @@
 {
     
     [self fetchUpdateFromServer];
+}
+
+
+- (void)insertAlbumWithTitle:(NSString*)title
+{
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+
+    newAlbum.title = title;    
+    Artist *artist = (Artist *)[NSEntityDescription
+                                insertNewObjectForEntityForName:@"Artist"
+                                inManagedObjectContext:self.managedObjectContext]; 
+    artist.gerne = @"rock";
+    artist.name  = @"Beatles";
     
-//    //TODO:get update from web service... now we just add one more
-//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-//    Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-//    
-//    // If appropriate, configure the new managed object.
-//    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-//    newAlbum.title = @"Beatles";
-//    
-//    Artist *artist = (Artist *)[NSEntityDescription
-//                                insertNewObjectForEntityForName:@"Artist"
-//                                inManagedObjectContext:self.managedObjectContext]; 
-//    
-//    
-//    artist.gerne = @"rock";
-//    artist.name  = @"Beatles";
-//    
-//    newAlbum.artist = artist;
-//    
-//    // Save the context.
-//    NSError *error = nil;
-//    if (![context save:&error]) {
-//         // Replace this implementation with code to handle the error appropriately.
-//         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
-//    }
+    //an album MUST have a artist
+    newAlbum.artist = artist;
+
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+
+
 }
 
 - (void)fetchUpdateFromServer
@@ -131,8 +130,7 @@
         abort();
     }
     
-    if(![NSJSONSerialization isValidJSONObject:posts])
-    {
+    if(![NSJSONSerialization isValidJSONObject:posts]){
         NSLog(@"Not valid JSON object");
         return;
     }
@@ -143,6 +141,7 @@
         NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
         NSString *title = [album objectForKey:@"title"];
         NSLog(@"get post %@",title);
+        [self insertAlbumWithTitle:title]; 
     }
     
     
