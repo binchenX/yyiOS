@@ -12,6 +12,10 @@
 #import "Album.h"
 #import "Artist.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
+
+
 @interface AlbumsListViewController ()
 {
     NSMutableData *jsonData;
@@ -245,12 +249,21 @@
     
 }
 
+
+//http://yaogun.com/artist/magic3/douwei_1zc.jpg
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Album *album = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [album.title description];    
     cell.detailTextLabel.text = [self.userVisiableDateFormatter stringFromDate:album.releaseDate];
-    cell.imageView.image = album.coverThumbnail;
+    //cell.imageView.image = album.coverThumbnail;
+    
+    NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
+    UIImage* placeholderImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    
+    [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://yaogun.com/artist/magic3/douwei_1zc.jpg"]
+                placeholderImage:placeholderImage];
+
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
