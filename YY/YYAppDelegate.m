@@ -114,7 +114,7 @@
     
     
     artist.gerne = @"rock";
-    artist.name  = @"douwei";
+    artist.name  = @"窦唯";
     
     //UIImage *coverThumbnail 
   

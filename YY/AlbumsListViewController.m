@@ -95,7 +95,7 @@
                                 insertNewObjectForEntityForName:@"Artist"
                                 inManagedObjectContext:self.managedObjectContext]; 
     artist.gerne = @"rock";
-    artist.name  = @"Beatles";
+    artist.name  = @"李志";
     
     //an album MUST have a artist
     newAlbum.artist = artist;
@@ -258,6 +258,13 @@
     return [sectionInfo numberOfObjects];
 }
 
+- (NSString *)tableView:(UITableView *)table titleForHeaderInSection:(NSInteger)section { 
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    
+        return [NSString stringWithFormat:NSLocalizedString(@"%@", @"%@"), [sectionInfo name]];
+   
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell"];
@@ -371,14 +378,18 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    NSSortDescriptor *sortByAuthorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"artist.name" ascending:NO];
+    
+    NSSortDescriptor *sortByReleaseDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO];
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortByAuthorDescriptor,sortByReleaseDateDescriptor, nil];
+    
+   [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"AlbumList"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"artist.name" cacheName:@"AlbumList"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
