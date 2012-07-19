@@ -14,6 +14,8 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#import "MBProgressHUD.h"
+
 
 
 @interface AlbumsListViewController ()
@@ -23,6 +25,11 @@
     NSDateFormatter * rfc3339DateFormatter;
     NSDateFormatter * userVisiableDateFormatter;
     UIImage * placeHolderImage;
+    
+    MBProgressHUD *HUD;
+    
+    long long expectedLength;
+	long long currentLength;
     
 }
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -141,6 +148,9 @@
     [connection start];
     
     
+    HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+	HUD.delegate = self;
+    
 }
 
 
@@ -149,13 +159,19 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    
+    expectedLength = [response expectedContentLength];
+    currentLength = 0;
+    HUD.mode = MBProgressHUDModeDeterminate;
     
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"receive data");
+    
     [jsonData appendData:data];
+    
+    
+    currentLength += [data length];
+	HUD.progress = currentLength / (float)expectedLength;
     
 }
 
@@ -210,11 +226,17 @@
     }
     
     
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+	HUD.mode = MBProgressHUDModeCustomView;
+	[HUD hide:YES afterDelay:2];
+    
     
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    NSLog(@"error when updating");
+    [HUD hide:YES];
     
 }
 
@@ -427,6 +449,15 @@
 }
  */
 
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[HUD removeFromSuperview];
+	 HUD = nil;
+}
 
 
 @end
