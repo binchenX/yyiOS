@@ -22,6 +22,7 @@
     NSURLConnection *connection;
     NSDateFormatter * rfc3339DateFormatter;
     NSDateFormatter * userVisiableDateFormatter;
+    UIImage * placeHolderImage;
     
 }
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -249,21 +250,29 @@
     
 }
 
+/**
+ * coverthumbnail place holder image
+ */
+- (UIImage *)placeHolderImage
+{
+    if(placeHolderImage == nil){
+        NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
+        placeHolderImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    }
+    return placeHolderImage;
+}
 
-//http://yaogun.com/artist/magic3/douwei_1zc.jpg
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Album *album = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [album.title description];    
     cell.detailTextLabel.text = [self.userVisiableDateFormatter stringFromDate:album.releaseDate];
-    //cell.imageView.image = album.coverThumbnail;
     
-    NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
-    UIImage* placeholderImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://yaogun.com/artist/magic3/douwei_1zc.jpg"]
-                placeholderImage:placeholderImage];
-
+    [cell.imageView setImageWithURL:[NSURL URLWithString:album.coverThumbnailUrl]
+                placeholderImage:[self placeHolderImage]];
+   
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

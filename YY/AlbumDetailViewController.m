@@ -11,14 +11,22 @@
 #import "Album.h"
 #import "Artist.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface AlbumDetailViewController ()
+{
+    UIImage *placeHolderImage;
+}
 - (void)configureView;
+
 @end
 
 @implementation AlbumDetailViewController
 
 @synthesize album = _album;
+@synthesize coverBig = _coverBig;
 @synthesize summary = _summary;
+
 //@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
 #pragma mark - Managing the detail item
@@ -31,6 +39,15 @@
         // Update the view.
         [self configureView];
     }
+}
+
+- (UIImage *)placeHolderImage
+{
+    if(placeHolderImage == nil){
+        NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"album1" ofType:@"jpg"];
+        placeHolderImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    }
+    return placeHolderImage;
 }
 
 - (void)configureView
@@ -50,7 +67,10 @@
         if(self.album.detail!=nil){
             albumDetail = [albumDetail stringByAppendingString:self.album.detail];
         }
-        self.summary.text = albumDetail;                              
+        
+        self.summary.text = albumDetail;   
+        [self.coverBig setImageWithURL:[NSURL URLWithString:self.album.coverBigUrl]
+                      placeholderImage:[self placeHolderImage]];
     }
 }
 
@@ -65,6 +85,7 @@
 {
     [self setSummary:nil];
     [self setSummary:nil];
+    [self setCoverBig:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
    // self.detailDescriptionLabel = nil;

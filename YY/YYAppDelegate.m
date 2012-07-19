@@ -133,6 +133,8 @@
         album.title = title;
         album.artist = artist;
         album.coverThumbnail = coverThumbnail;
+        album.coverThumbnailUrl = @"http://yaogun.com/artist/magic3/douwei_1zc.jpg";
+        album.coverBigUrl = album.coverThumbnailUrl;
         album.downloadUrl = @"http://www.baidu.com";
         album.listenUrl = @"http://www.baidu.com";
     }

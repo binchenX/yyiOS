@@ -21,6 +21,8 @@
 @dynamic listenUrl;
 @dynamic downloadUrl;
 @dynamic detail;
+@dynamic coverThumbnailUrl;
+@dynamic coverBigUrl;
 
 
 + (void)initialize {
