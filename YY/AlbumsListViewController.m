@@ -236,7 +236,11 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"error when updating");
-    [HUD hide:YES];
+    
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error.png"]];
+	HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Update Error";
+	[HUD hide:YES afterDelay:2];
     
 }
 
