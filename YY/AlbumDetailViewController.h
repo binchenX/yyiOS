@@ -13,6 +13,7 @@
 @interface AlbumDetailViewController : UIViewController
 
 @property (strong, nonatomic) Album * album;
+- (IBAction)downLoad:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *coverBig;
 
 @property (strong, nonatomic) IBOutlet UITextView *summary;

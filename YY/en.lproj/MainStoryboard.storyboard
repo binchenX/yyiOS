@@ -159,6 +159,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="downLoad:" destination="21" eventType="touchUpInside" id="g0i-Y6-c0B"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rzV-HC-SMb">
                                 <rect key="frame" x="248" y="122" width="72" height="37"/>
@@ -190,7 +193,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1144" y="60"/>
+            <point key="canvasLocation" x="1117" y="71"/>
         </scene>
         <!--Album Web Resouce View Controller - 试听-->
         <scene sceneID="dKk-fK-MFD">
@@ -242,6 +245,25 @@
         <image name="albums.png" width="48" height="48"/>
         <image name="bar.png" width="32" height="37"/>
     </resources>
+    <classes>
+        <class className="AlbumDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="downLoad:"/>
+                <relationship kind="outlet" name="coverBig" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="summary" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="AlbumWebResouceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="AlbumsListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumsListViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

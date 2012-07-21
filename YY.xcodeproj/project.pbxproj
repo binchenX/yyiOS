@@ -16,6 +16,7 @@
 		8791FCCF15B7E28B00CC1095 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8791FCCE15B7E28B00CC1095 /* 37x-Checkmark.png */; };
 		8791FCD515B81A6A00CC1095 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 8791FCD415B81A6A00CC1095 /* error.png */; };
 		87B7772215B292B2007C9596 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B7772115B292B2007C9596 /* Icon.png */; };
+		87E4D00C15BABA540020E76F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E4D00B15BABA540020E76F /* AVFoundation.framework */; };
 		87ED8E2315B15F9F00D2C800 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ED8E2215B15F9F00D2C800 /* UIKit.framework */; };
 		87ED8E2515B15F9F00D2C800 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ED8E2415B15F9F00D2C800 /* Foundation.framework */; };
 		87ED8E2715B15F9F00D2C800 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ED8E2615B15F9F00D2C800 /* CoreGraphics.framework */; };
@@ -76,6 +77,7 @@
 		8791FCCE15B7E28B00CC1095 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		8791FCD415B81A6A00CC1095 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		87B7772115B292B2007C9596 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		87E4D00B15BABA540020E76F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		87ED8E1E15B15F9F00D2C800 /* YY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87ED8E2215B15F9F00D2C800 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		87ED8E2415B15F9F00D2C800 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87E4D00C15BABA540020E76F /* AVFoundation.framework in Frameworks */,
 				8791FCB615B7AF2500CC1095 /* ImageIO.framework in Frameworks */,
 				8791FCB415B7AF1000CC1095 /* libSDWebImageARC.a in Frameworks */,
 				87ED8E2315B15F9F00D2C800 /* UIKit.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		87ED8E1315B15F9F00D2C800 = {
 			isa = PBXGroup;
 			children = (
+				87E4D00B15BABA540020E76F /* AVFoundation.framework */,
 				8791FCB515B7AF2500CC1095 /* ImageIO.framework */,
 				8791FCA215B7AEC500CC1095 /* SDWebImage.xcodeproj */,
 				87ED8E8C15B1B3B500D2C800 /* album1.jpg */,
