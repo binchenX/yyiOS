@@ -97,7 +97,15 @@
     newAlbum.coverThumbnailUrl = coverThumbnailUrl;
     newAlbum.coverBigUrl = coverBigUrl;
     
+   
+    
     NSString *singer = [album objectForKey:@"singer"];
+    
+    //hack
+    if ([singer isEqualToString:@"窦唯"]) {
+        newAlbum.rating = [NSNumber numberWithInt:5];
+    }
+    
     Artist *artist = (Artist *)[NSEntityDescription
                                 insertNewObjectForEntityForName:@"Artist"
                                 inManagedObjectContext:self.managedObjectContext]; 

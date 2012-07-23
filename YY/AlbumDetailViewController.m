@@ -31,6 +31,7 @@
 
 @synthesize album = _album;
 @synthesize coverBig = _coverBig;
+@synthesize recommendStar = _recommendStar;
 @synthesize summary = _summary;
 
 //@synthesize detailDescriptionLabel = _detailDescriptionLabel;
@@ -79,6 +80,12 @@
         if(coverImage == nil){
             coverImage = self.album.coverThumbnailUrl;
         }
+        
+        //show the recommendation start if the rating is 5
+        if([self.album.rating intValue]  == 5 ){
+            [self.recommendStar setHidden:NO];
+        }
+        
         [self.coverBig setImageWithURL:[NSURL URLWithString:coverImage]
                       placeholderImage:[self placeHolderImage]];
     }
@@ -97,6 +104,7 @@
     [self setSummary:nil];
     [self setSummary:nil];
     [self setCoverBig:nil];
+    [self setRecommendStar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
    // self.detailDescriptionLabel = nil;
