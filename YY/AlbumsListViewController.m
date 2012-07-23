@@ -94,12 +94,16 @@
     newAlbum.detail = detail;
     newAlbum.releaseDate = [self.rfc3339DateFormatter dateFromString:releaseDate];
     newAlbum.coverThumbnailUrl = coverThumbnailUrl;
+   
     
+    NSString *singer = [album objectForKey:@"singer"];
     Artist *artist = (Artist *)[NSEntityDescription
                                 insertNewObjectForEntityForName:@"Artist"
                                 inManagedObjectContext:self.managedObjectContext]; 
+   
+//TODO:find if singer exist ,if not create it
     artist.gerne = @"rock";
-    artist.name  = @"李志";
+    artist.name  = singer;
     
     //an album MUST have a artist
     newAlbum.artist = artist;
