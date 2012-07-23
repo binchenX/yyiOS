@@ -353,16 +353,16 @@
 
 //TODO:fix table view selectable index
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)table {
-    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
-    return [self.fetchedResultsController sectionIndexTitles];
-    
-}
-
-- (NSInteger)tableView:(UITableView *)table sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    // tell table which section corresponds to section title/index (e.g. "B",1))
-    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
-}
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)table {
+//    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
+//    return [self.fetchedResultsController sectionIndexTitles];
+//    
+//}
+//
+//- (NSInteger)tableView:(UITableView *)table sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+//    // tell table which section corresponds to section title/index (e.g. "B",1))
+//    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+//}
 
 //do it in the storyboard
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
