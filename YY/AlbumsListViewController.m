@@ -82,6 +82,7 @@
 - (void)insertAlbumWithTitle:(NSString*)title 
                    andDetail:(NSString *)detail 
                  releaseDate:(NSDate*)releaseDate
+              coverThumbNailUrl:(NSString*)coverThumbnailUrl
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -90,6 +91,7 @@
     newAlbum.title = title;    
     newAlbum.detail = detail;
     newAlbum.releaseDate = releaseDate;
+    newAlbum.coverThumbnailUrl = coverThumbnailUrl;
     
     Artist *artist = (Artist *)[NSEntityDescription
                                 insertNewObjectForEntityForName:@"Artist"
@@ -142,7 +144,7 @@
     
     jsonData = [[NSMutableData alloc] init];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:3000/api?tag=show&since=2011-20"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:3000/api?tag=album&since=2000-01"]];
     
     connection = [NSURLConnection connectionWithRequest:request delegate:self];
     [connection start];
@@ -214,12 +216,15 @@
         NSString *title = [album objectForKey:@"title"];
         NSString *detail = [album objectForKey:@"content"];
         NSString *releaseDate = [album objectForKey:@"happen_at"];
+        NSString *cover_thumbnail = [album objectForKey:@"image_small"];
         
         NSLog(@"get post %@",title);
         if([self albumDoesNotExsitByTitle:title]){
             [self insertAlbumWithTitle:title   
                              andDetail:detail 
-                           releaseDate:[self.rfc3339DateFormatter dateFromString:releaseDate]]; 
+                           releaseDate:[self.rfc3339DateFormatter dateFromString:releaseDate]
+                     coverThumbNailUrl:cover_thumbnail
+             ]; 
         }else {
             NSLog(@"album already exsit");
         }
@@ -349,8 +354,8 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)table {
     // return list of section titles to display in section index view (e.g. "ABCD...Z#")
-    NSArray * s= [self.fetchedResultsController sectionIndexTitles];
-    return s;
+    return [self.fetchedResultsController sectionIndexTitles];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)table sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
