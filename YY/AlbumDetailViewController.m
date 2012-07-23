@@ -74,8 +74,12 @@
             albumDetail = [albumDetail stringByAppendingString:self.album.detail];
         }
         
-        self.summary.text = albumDetail;   
-        [self.coverBig setImageWithURL:[NSURL URLWithString:self.album.coverBigUrl]
+        self.summary.text = albumDetail; 
+        NSString *coverImage = self.album.coverBigUrl;
+        if(coverImage == nil){
+            coverImage = self.album.coverThumbnailUrl;
+        }
+        [self.coverBig setImageWithURL:[NSURL URLWithString:coverImage]
                       placeholderImage:[self placeHolderImage]];
     }
 }
