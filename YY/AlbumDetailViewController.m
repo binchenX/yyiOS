@@ -66,13 +66,13 @@
         self.navigationItem.title = self.album.title;
         
         //setup the summary
-        NSString * albumDetail = [NSString stringWithFormat:@"title %@:singer %@",
-                                  self.album.title ,
-                                  self.album.artist.name];
+        NSString * albumDetail = [NSString stringWithFormat:@"%@",self.album.artist.name];
+        albumDetail = [albumDetail stringByAppendingFormat:@" - %@",self.album.title];
         
-        if(self.album.detail!=nil){
-            albumDetail = [albumDetail stringByAppendingString:self.album.detail];
-        }
+        //disble detail
+//        if(self.album.detail!=nil){
+//            albumDetail = [albumDetail stringByAppendingString:self.album.detail];
+//        }
         
         self.summary.text = albumDetail; 
         NSString *coverImage = self.album.coverBigUrl;
