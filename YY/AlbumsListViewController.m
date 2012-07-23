@@ -78,19 +78,21 @@
     [self fetchUpdateFromServer];
 }
 
-
-- (void)insertAlbumWithTitle:(NSString*)title 
-                   andDetail:(NSString *)detail 
-                 releaseDate:(NSDate*)releaseDate
-              coverThumbNailUrl:(NSString*)coverThumbnailUrl
+- (void)insertAlbum:(NSDictionary*)album
 {
+    
+    NSString *title = [album objectForKey:@"title"];
+    NSString *detail = [album objectForKey:@"content"];
+    NSString *releaseDate = [album objectForKey:@"happen_at"];
+    NSString *coverThumbnailUrl = [album objectForKey:@"image_small"];
+    
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 
     newAlbum.title = title;    
     newAlbum.detail = detail;
-    newAlbum.releaseDate = releaseDate;
+    newAlbum.releaseDate = [self.rfc3339DateFormatter dateFromString:releaseDate];
     newAlbum.coverThumbnailUrl = coverThumbnailUrl;
     
     Artist *artist = (Artist *)[NSEntityDescription
@@ -208,25 +210,19 @@
         NSLog(@"Not valid JSON object");
         return;
     }
+   
     NSLog(@"get %d posts" , [posts count]);
     
     //save those posts
     for (NSDictionary *post in posts){
         NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
         NSString *title = [album objectForKey:@"title"];
-        NSString *detail = [album objectForKey:@"content"];
-        NSString *releaseDate = [album objectForKey:@"happen_at"];
-        NSString *cover_thumbnail = [album objectForKey:@"image_small"];
         
-        NSLog(@"get post %@",title);
         if([self albumDoesNotExsitByTitle:title]){
-            [self insertAlbumWithTitle:title   
-                             andDetail:detail 
-                           releaseDate:[self.rfc3339DateFormatter dateFromString:releaseDate]
-                     coverThumbNailUrl:cover_thumbnail
-             ]; 
+            NSLog(@"add new album %@ ",title);
+            [self insertAlbum:album ];
         }else {
-            NSLog(@"album already exsit");
+            NSLog(@"album %@ already exsit",title);
         }
     }
     
