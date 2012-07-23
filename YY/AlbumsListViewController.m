@@ -85,6 +85,7 @@
     NSString *detail = [album objectForKey:@"content"];
     NSString *releaseDate = [album objectForKey:@"happen_at"];
     NSString *coverThumbnailUrl = [album objectForKey:@"image_small"];
+    NSString *coverBigUrl = [album objectForKey:@"image_big"];
     
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -94,7 +95,7 @@
     newAlbum.detail = detail;
     newAlbum.releaseDate = [self.rfc3339DateFormatter dateFromString:releaseDate];
     newAlbum.coverThumbnailUrl = coverThumbnailUrl;
-   
+    newAlbum.coverBigUrl = coverBigUrl;
     
     NSString *singer = [album objectForKey:@"singer"];
     Artist *artist = (Artist *)[NSEntityDescription
