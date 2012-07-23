@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *recommendStar;
 
 @property (strong, nonatomic) IBOutlet UITextView *summary;
+- (IBAction)handleSwipe:(UISwipeGestureRecognizer*)recognizer;
 
 //@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 

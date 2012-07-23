@@ -193,6 +193,10 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gOT-PY-YUW" appends="YES" id="vTB-Qa-VL5"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="专辑详情" id="26"/>
                     <connections>
@@ -201,6 +205,16 @@
                         <outlet property="summary" destination="ATI-nn-2uu" id="LeE-qi-qVb"/>
                     </connections>
                 </viewController>
+                <swipeGestureRecognizer direction="left" id="K6p-DW-czh" userLabel="Left Swipe Gesture  Recognizer">
+                    <connections>
+                        <action selector="handleSwipe:" destination="21" id="A8o-YI-T2W"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="gOT-PY-YUW" userLabel="Right Swipe Gesture  Recognizer">
+                    <connections>
+                        <action selector="handleSwipe:" destination="21" id="z3P-Jg-9Hg"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1117" y="71"/>
         </scene>
@@ -254,6 +268,27 @@
         <image name="bar.png" width="32" height="37"/>
         <image name="start_red_32x32.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="AlbumDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="downLoad:"/>
+                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="outlet" name="coverBig" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="recommendStar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="summary" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="AlbumWebResouceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="AlbumsListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumsListViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

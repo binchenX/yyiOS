@@ -156,4 +156,10 @@
     
     [self playAudio];
 }
+
+#pragma mark - gesture handler
+- (IBAction)handleSwipe:(UISwipeGestureRecognizer*)recognizer {
+    
+    NSLog(@"swiped");
+}
 @end
