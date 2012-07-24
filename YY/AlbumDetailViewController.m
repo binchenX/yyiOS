@@ -159,7 +159,12 @@
 
 #pragma mark - gesture handler
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer*)recognizer {
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft ){
+        NSLog(@"swiped left");
+    }else if(recognizer.direction == UISwipeGestureRecognizerDirectionRight){
+        NSLog(@"swiped right");
+
+    }
     
-    NSLog(@"swiped");
 }
 @end

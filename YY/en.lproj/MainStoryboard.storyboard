@@ -183,9 +183,13 @@
                                 <rect key="frame" x="0.0" y="319" width="252" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <color key="textColor" red="0.10465218567131311" green="0.13174801208931483" blue="0.22826086956521741" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="FNB-AZ-TpX" appends="YES" id="BPf-70-3Na"/>
+                                </connections>
                             </textView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" image="start_red_32x32.png" id="Odo-xo-Q0P">
                                 <rect key="frame" x="265" y="-8" width="55" height="55"/>
@@ -195,7 +199,7 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="gOT-PY-YUW" appends="YES" id="vTB-Qa-VL5"/>
+                            <outletCollection property="gestureRecognizers" destination="ip6-T4-aRj" appends="YES" id="0ml-mw-esT"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="专辑详情" id="26"/>
@@ -205,14 +209,14 @@
                         <outlet property="summary" destination="ATI-nn-2uu" id="LeE-qi-qVb"/>
                     </connections>
                 </viewController>
-                <swipeGestureRecognizer direction="left" id="K6p-DW-czh" userLabel="Left Swipe Gesture  Recognizer">
+                <swipeGestureRecognizer direction="right" id="ip6-T4-aRj">
                     <connections>
-                        <action selector="handleSwipe:" destination="21" id="A8o-YI-T2W"/>
+                        <action selector="handleSwipe:" destination="21" id="q3Q-SZ-Loe"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="gOT-PY-YUW" userLabel="Right Swipe Gesture  Recognizer">
+                <swipeGestureRecognizer direction="left" id="FNB-AZ-TpX">
                     <connections>
-                        <action selector="handleSwipe:" destination="21" id="z3P-Jg-9Hg"/>
+                        <action selector="handleSwipe:" destination="21" id="7xv-X8-zWv"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
