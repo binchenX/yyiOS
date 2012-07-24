@@ -25,6 +25,7 @@
     NSDateFormatter * rfc3339DateFormatter;
     NSDateFormatter * userVisiableDateFormatter;
     UIImage * placeHolderImage;
+    NSIndexPath *currentViewedIndexPath;
     
     MBProgressHUD *HUD;
     
@@ -384,7 +385,9 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        currentViewedIndexPath = indexPath;
         Album * album = (Album *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setDelegate:self];
         [[segue destinationViewController] setAlbum:album];
     }
 }
@@ -501,6 +504,61 @@
 	[HUD removeFromSuperview];
 	 HUD = nil;
 }
+
+
+//used to implement swipe in the detail page
+#pragma mark - albumDateListDelegate 
+
+- (Album*)getAlbumAtIndex:(NSIndexPath*)indexPath
+{
+    NSLog(@"AlbumDateListDelegate is called");
+    //return (Album*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    return nil;
+}
+
+
+/**
+ *get next in current section
+ */
+ 
+
+-(Album*)getNext
+{
+    
+    
+    NSInteger nextRow = currentViewedIndexPath.row + 1;
+    NSInteger numberOfRowInSection = [self tableView:self.tableView numberOfRowsInSection:currentViewedIndexPath.section];
+    
+    if(nextRow >= numberOfRowInSection - 1 ){
+        nextRow = numberOfRowInSection - 1;
+    }
+   
+    NSIndexPath *next = [NSIndexPath indexPathForRow:nextRow inSection:currentViewedIndexPath.section];  
+    
+    currentViewedIndexPath = next;
+    
+    return (Album*)[self.fetchedResultsController objectAtIndexPath:next];
+  
+    
+}
+
+/**
+ *get previous in current section
+ */
+
+-(Album*)getPrevious
+{
+    NSInteger nextRow = currentViewedIndexPath.row - 1;
+    if(nextRow <0 ){
+        nextRow = 0;
+    }
+    NSIndexPath *next = [NSIndexPath indexPathForRow:nextRow inSection:currentViewedIndexPath.section];  
+    
+    currentViewedIndexPath = next;
+    return (Album*)[self.fetchedResultsController objectAtIndexPath:next];
+
+}
+
 
 
 @end

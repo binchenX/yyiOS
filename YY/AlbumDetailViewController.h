@@ -20,6 +20,17 @@
 @property (strong, nonatomic) IBOutlet UITextView *summary;
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer*)recognizer;
 
+@property (strong, nonatomic) id delegate;
+
 //@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
+@end
+
+@protocol AlbumListDataDelegate <NSObject>
+
+-(Album*)getNext;
+-(Album*)getPrevious;
+
+@optional
+- (Album*)getAlbumAtIndex:(NSIndexPath*)indexPath;
 @end

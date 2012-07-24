@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
-
+//for AlbumListDataDelegate
+#import "AlbumDetailViewController.h"
 #import <CoreData/CoreData.h>
 
-@interface AlbumsListViewController : UITableViewController <NSFetchedResultsControllerDelegate, NSURLConnectionDataDelegate,MBProgressHUDDelegate>
+@interface AlbumsListViewController : UITableViewController <NSFetchedResultsControllerDelegate, NSURLConnectionDataDelegate,MBProgressHUDDelegate , AlbumListDataDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

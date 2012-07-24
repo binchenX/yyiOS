@@ -33,6 +33,7 @@
 @synthesize coverBig = _coverBig;
 @synthesize recommendStar = _recommendStar;
 @synthesize summary = _summary;
+@synthesize delegate = _delegate;
 
 //@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
@@ -161,9 +162,32 @@
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer*)recognizer {
     if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft ){
         NSLog(@"swiped left");
+        [self showNext];
     }else if(recognizer.direction == UISwipeGestureRecognizerDirectionRight){
         NSLog(@"swiped right");
+        [self showPrevious];
 
+    }
+    
+}
+
+
+- (void)showNext
+{
+    if ([self.delegate respondsToSelector:@selector(getNext)]) 
+    {
+        Album *album = [self.delegate getNext];
+        self.album = album;
+    }
+    
+}
+
+
+- (void)showPrevious
+{
+    if ([self.delegate respondsToSelector:@selector(getPrevious)]) {
+        Album *album = [self.delegate getPrevious];
+        self.album = album;
     }
     
 }
