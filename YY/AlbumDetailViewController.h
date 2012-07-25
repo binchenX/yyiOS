@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class Album;
 
@@ -23,6 +24,9 @@
 @property (strong, nonatomic) id delegate;
 
 //@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+- (IBAction)play:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *playerViewHolder;
 
 @end
 

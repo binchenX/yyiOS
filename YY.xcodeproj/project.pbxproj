@@ -12,6 +12,7 @@
 		875C9F5515B2DF750034C57A /* albums.png in Resources */ = {isa = PBXBuildFile; fileRef = 875C9F5415B2DF750034C57A /* albums.png */; };
 		878DBBAB15BD3276009A0716 /* star_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 878DBBAA15BD3276009A0716 /* star_red.png */; };
 		878DBBAF15BD3303009A0716 /* start_red_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 878DBBAE15BD3303009A0716 /* start_red_32x32.png */; };
+		878EB4AE15C01685005689C2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 878EB4AD15C01685005689C2 /* MediaPlayer.framework */; };
 		8791FCB415B7AF1000CC1095 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8791FCAE15B7AEC500CC1095 /* libSDWebImageARC.a */; };
 		8791FCB615B7AF2500CC1095 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8791FCB515B7AF2500CC1095 /* ImageIO.framework */; };
 		8791FCCD15B7DF4400CC1095 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8791FCCC15B7DF4400CC1095 /* MBProgressHUD.m */; };
@@ -74,6 +75,7 @@
 		875C9F5415B2DF750034C57A /* albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albums.png; sourceTree = "<group>"; };
 		878DBBAA15BD3276009A0716 /* star_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_red.png; sourceTree = "<group>"; };
 		878DBBAE15BD3303009A0716 /* start_red_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_red_32x32.png; sourceTree = "<group>"; };
+		878EB4AD15C01685005689C2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8791FCA215B7AEC500CC1095 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = libs/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		8791FCB515B7AF2500CC1095 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		8791FCCB15B7DF4400CC1095 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				878EB4AE15C01685005689C2 /* MediaPlayer.framework in Frameworks */,
 				87E4D00C15BABA540020E76F /* AVFoundation.framework in Frameworks */,
 				8791FCB615B7AF2500CC1095 /* ImageIO.framework in Frameworks */,
 				8791FCB415B7AF1000CC1095 /* libSDWebImageARC.a in Frameworks */,
@@ -150,6 +153,7 @@
 		87ED8E1315B15F9F00D2C800 = {
 			isa = PBXGroup;
 			children = (
+				878EB4AD15C01685005689C2 /* MediaPlayer.framework */,
 				87E4D00B15BABA540020E76F /* AVFoundation.framework */,
 				8791FCB515B7AF2500CC1095 /* ImageIO.framework */,
 				8791FCA215B7AEC500CC1095 /* SDWebImage.xcodeproj */,
