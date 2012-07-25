@@ -255,12 +255,12 @@
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="返回" id="g82-wl-sH5">
+                                    <barButtonItem enabled="NO" title="返回" id="g82-wl-sH5">
                                         <connections>
                                             <action selector="navigateBack" destination="GSi-CI-op4" id="O0r-rH-csj"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="前进" id="uRy-tl-289">
+                                    <barButtonItem enabled="NO" title="前进" id="uRy-tl-289">
                                         <connections>
                                             <action selector="navigateForward" destination="GSi-CI-op4" id="HT1-si-21K"/>
                                         </connections>
@@ -305,6 +305,31 @@
         <image name="bar.png" width="32" height="37"/>
         <image name="start_red_32x32.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="AlbumDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="downLoad:"/>
+                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="outlet" name="coverBig" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="recommendStar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="summary" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="AlbumWebResouceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="navigateBack"/>
+                <relationship kind="action" name="navigateForward"/>
+                <relationship kind="outlet" name="browserBackButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="browserForwardButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="AlbumsListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumsListViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

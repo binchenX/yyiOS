@@ -153,7 +153,7 @@
     }else if([@"showWebLink" isEqualToString:[segue identifier]]){
         AlbumWebResouceViewController * destViewController = (AlbumWebResouceViewController*)[segue destinationViewController];
         destViewController.urlString = self.album.detailUrl;
-        destViewController.navigationItem.title = @"详情";
+        destViewController.navigationItem.title = @"外部信息";
     }
 }
 
