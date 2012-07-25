@@ -87,6 +87,7 @@
     NSString *releaseDate = [album objectForKey:@"happen_at"];
     NSString *coverThumbnailUrl = [album objectForKey:@"image_small"];
     NSString *coverBigUrl = [album objectForKey:@"image_big"];
+    NSString *detailUrl = [album objectForKey:@"link_mobile"];
     
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -97,6 +98,7 @@
     newAlbum.releaseDate = [self.rfc3339DateFormatter dateFromString:releaseDate];
     newAlbum.coverThumbnailUrl = coverThumbnailUrl;
     newAlbum.coverBigUrl = coverBigUrl;
+    newAlbum.detailUrl = detailUrl;
     
    
     

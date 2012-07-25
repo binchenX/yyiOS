@@ -150,6 +150,10 @@
         destViewController.urlString = self.album.listenUrl;
         //destViewController.urlString = @"http://localhost:3000/test.mp3";
         destViewController.navigationItem.title = [destViewController.navigationItem.title stringByAppendingString:self.album.title];
+    }else if([@"showWebLink" isEqualToString:[segue identifier]]){
+        AlbumWebResouceViewController * destViewController = (AlbumWebResouceViewController*)[segue destinationViewController];
+        destViewController.urlString = self.album.detailUrl;
+        destViewController.navigationItem.title = @"详情";
     }
 }
 

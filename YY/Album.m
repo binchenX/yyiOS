@@ -24,6 +24,7 @@
 @dynamic coverThumbnailUrl;
 @dynamic coverBigUrl;
 @dynamic rating;
+@dynamic detailUrl;
 
 
 + (void)initialize {

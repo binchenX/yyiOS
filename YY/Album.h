@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * listenUrl;
 @property (nonatomic, retain) NSString * coverThumbnailUrl;
 @property (nonatomic, retain) NSString * coverBigUrl;
+@property (nonatomic, retain) NSString * detailUrl; //doubai mobile uri for this web album
 @property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) Artist *artist;
 @end
