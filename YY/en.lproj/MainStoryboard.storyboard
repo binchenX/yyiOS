@@ -251,11 +251,29 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="LRs-zZ-7Qb">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="返回" id="g82-wl-sH5">
+                                        <connections>
+                                            <action selector="navigateBack" destination="GSi-CI-op4" id="O0r-rH-csj"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="前进" id="uRy-tl-289">
+                                        <connections>
+                                            <action selector="navigateForward" destination="GSi-CI-op4" id="HT1-si-21K"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="试听" id="DXu-5n-CyL"/>
                     <connections>
+                        <outlet property="browserBackButton" destination="g82-wl-sH5" id="8Lw-rU-C8M"/>
+                        <outlet property="browserForwardButton" destination="uRy-tl-289" id="Puq-ch-9Rd"/>
                         <outlet property="webView" destination="hO5-Rq-ydz" id="RBu-OK-7Q5"/>
                     </connections>
                 </viewController>
@@ -287,27 +305,6 @@
         <image name="bar.png" width="32" height="37"/>
         <image name="start_red_32x32.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="AlbumDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="downLoad:"/>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="outlet" name="coverBig" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="recommendStar" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="summary" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="AlbumWebResouceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="AlbumsListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumsListViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

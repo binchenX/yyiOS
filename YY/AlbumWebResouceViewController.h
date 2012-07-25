@@ -11,5 +11,12 @@
 @interface AlbumWebResouceViewController : UIViewController <UIWebViewDelegate> 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
+- (IBAction)navigateBack;
+
+- (IBAction)navigateForward;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *browserForwardButton;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *browserBackButton;
 @property (nonatomic,copy) NSString *urlString;
 @end

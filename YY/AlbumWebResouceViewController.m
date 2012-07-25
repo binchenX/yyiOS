@@ -14,6 +14,8 @@
 
 @implementation AlbumWebResouceViewController
 @synthesize webView;
+@synthesize browserForwardButton;
+@synthesize browserBackButton;
 @synthesize urlString;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,6 +45,8 @@
 - (void)viewDidUnload
 {
     [self setWebView:nil];
+    [self setBrowserBackButton:nil];
+    [self setBrowserForwardButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -66,6 +70,8 @@
 {
     // finished loading, hide the activity indicator in the status bar
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+     
+    [self setWebviewNavigationButtonStatu];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -81,4 +87,32 @@
 }
 
 
+- (void)setWebviewNavigationButtonStatu
+{
+    if ([self.webView canGoBack]) {
+        self.browserBackButton.enabled = YES; 
+    }else {
+        self.browserBackButton.enabled = NO;
+    }
+    
+    
+    if ([self.webView canGoForward]) {
+        self.browserForwardButton.enabled = YES; 
+    }else {
+        self.browserForwardButton.enabled = NO;
+    }
+    
+    
+    
+}
+
+- (IBAction)navigateBack {
+    
+    [self.webView goBack];
+    
+}
+
+- (IBAction)navigateForward {
+    [self.webView goForward];
+}
 @end
