@@ -244,7 +244,10 @@
 
 
 /**
- * This method will be run in a background thread started by MBProgressHD
+ * This method will be run in a background thread started by MBProgressHD.
+ * And we have to use backgroundMOC to insert/update and finnaly merge the
+ * backgoundMOC with the mainMOC.
+ *
  */
  
 
@@ -257,8 +260,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundMOCDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];         
 
-
-    
     HUD.mode = MBProgressHUDModeDeterminate;
     HUD.labelText = @"Update..";
     
@@ -274,13 +275,8 @@
     }
     
     NSUInteger totalUpdate = [posts count];
-    
     NSLog(@"get %d posts" , totalUpdate);
-   // usleep(2000);
-    
-    //HUD.mode = MBProgressHUDModeDeterminate;
-    //HUD.labelText = @"Update..";
-    
+
     int count = 0 ;
     
     //save those posts
@@ -288,32 +284,27 @@
         NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
         NSString *title = [album objectForKey:@"title"];
         
-        //we could make sure we only insert but not update in the server 
-        //if we need to check while insert we have to saveContext otherwise 
-        //NSException(set was mutated while be enumerated) will be thrown
-        
+        //To reduce the time needed to check if the album exsit,
+        //we have to make sure we only insert but not update in the server 
         //check:
         //http://stackoverflow.com/questions/3446983/collection-was-mutated-while-being-enumerated-on-executefetchrequest
         
         if([self albumDoesNotExsitByTitle:title]){
-            //NSLog(@"add new album %@ ",title);
             [self insertAlbum:album ];
-        }else {
-            //NSLog(@"album %@ already exsit",title);
         }
-        
         count += 1;
-        
-        //save every 10 items 
+        //save every 10 items to reduce the save latency
         if((count % 10) == 0){
             //save context in batch is much fast than save context for each insert
+            //This will trigger NSManagedObjectContextDidSaveNotification and  
+            //self.backgroundMOCDidSave will be called to merge the change
             [self.backgroundMOC save:NULL];
         }
+        
         HUD.progress = (float)count / totalUpdate; 
     }
     
     NSLog(@"finish update");
-  
     //save remaining..
     [self.backgroundMOC save:NULL];
     
@@ -321,10 +312,9 @@
 	HUD.mode = MBProgressHUDModeCustomView;
 	[HUD hide:YES afterDelay:2];
     
-   
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];
     
+    //clean up
     [self.backgroundMOC reset]; 
      self.backgroundMOC = nil;
 
@@ -346,8 +336,6 @@
 {
     NSLog(@"finish download the data ,will update local db");
     [HUD showWhileExecuting:@selector(updateLocalDatabase) onTarget:self withObject:nil animated:YES];
-    
-    //[self updateLocalDatabase];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -385,6 +373,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell"];
+    
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"AlbumCell"];
+        [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+    }
+    
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -420,6 +414,7 @@
     cell.detailTextLabel.text = [self.userVisiableDateFormatter stringFromDate:album.releaseDate];
     
     
+    [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
     [cell.imageView setImageWithURL:[NSURL URLWithString:album.coverThumbnailUrl]
                 placeholderImage:[self placeHolderImage]];
    
