@@ -162,17 +162,39 @@
     
     jsonData = [[NSMutableData alloc] init];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:3000/api?tag=album&since=2000-01"]];
+    //NSString *requestUrlSimulator = @"http://localhost:3000/api?tag=album&since=2000-01";
+    
+    NSString *requestUrlDevice = @"http://www.rock-n-folk.com/api?tag=album&since=2010-01";
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestUrlDevice]];
     
     connection = [NSURLConnection connectionWithRequest:request delegate:self];
-    [connection start];
     
     
     HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    HUD.mode = MBProgressHUDModeIndeterminate;
 	HUD.delegate = self;
+    HUD.labelText = @"Connecting..";
+    NSLog(@"start connecting..");
+    
+    //[connection start];
+    
+    // myProgressTask uses the HUD instance to update progress
+	//[HUD showWhileExecuting:@selector(myProgressTask) onTarget:self withObject:nil animated:YES];
+    
+    
     
 }
 
+
+- (void)myProgressTask {
+	// This just increases the progress indicator in a loop
+	float progress = 0.0f;
+	while (progress < 1.0f) {
+		progress += 0.01f;
+		HUD.progress = progress;
+		usleep(50000);
+	}
+}
 
 
 #pragma mark URLConnectionDataDelegate
@@ -181,17 +203,17 @@
 {
     expectedLength = [response expectedContentLength];
     currentLength = 0;
-    HUD.mode = MBProgressHUDModeDeterminate;
+    //HUD.mode = MBProgressHUDModeDeterminate;
+    //HUD.labelText = @"Connecting..";
+    NSLog(@"get response");
     
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     
     [jsonData appendData:data];
-    
-    
-    currentLength += [data length];
-	HUD.progress = currentLength / (float)expectedLength;
+    //currentLength += [data length];
+	//HUD.progress = currentLength / (float)expectedLength;
     
 }
 
@@ -211,11 +233,12 @@
     return rfc3339DateFormatter;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+
+- (void)updateLocalDatabase
 {
+    HUD.mode = MBProgressHUDModeDeterminate;
+    HUD.labelText = @"Update..";
     
-    //parse the data and save it to the ObjectContext
-    NSLog(@"finish download the data ,will update local db");
     NSError *error = nil;
     NSArray *posts = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     if(error){
@@ -226,8 +249,16 @@
         NSLog(@"Not valid JSON object");
         return;
     }
-   
-    NSLog(@"get %d posts" , [posts count]);
+    
+    NSUInteger totalUpdate = [posts count];
+    
+    NSLog(@"get %d posts" , totalUpdate);
+   // usleep(2000);
+    
+    //HUD.mode = MBProgressHUDModeDeterminate;
+    //HUD.labelText = @"Update..";
+    
+    float count = 0.0f ;
     
     //save those posts
     for (NSDictionary *post in posts){
@@ -235,19 +266,34 @@
         NSString *title = [album objectForKey:@"title"];
         
         if([self albumDoesNotExsitByTitle:title]){
-            NSLog(@"add new album %@ ",title);
+            //NSLog(@"add new album %@ ",title);
             [self insertAlbum:album ];
         }else {
-            NSLog(@"album %@ already exsit",title);
+            //NSLog(@"album %@ already exsit",title);
         }
+        
+        count += 1.0f;
+        HUD.progress = count / totalUpdate; 
     }
     
+    NSLog(@"finish update");
+    
+    //usleep(2000);
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 	HUD.mode = MBProgressHUDModeCustomView;
 	[HUD hide:YES afterDelay:2];
     
     
+
+
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"finish download the data ,will update local db");
+    [HUD showWhileExecuting:@selector(updateLocalDatabase) onTarget:self withObject:nil animated:YES];
+    
+    //[self updateLocalDatabase];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
