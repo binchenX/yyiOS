@@ -41,6 +41,7 @@
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
+@synthesize backgroundMOC = _backgroundMOC;
 
 
 #pragma mark - view life cycle management
@@ -89,7 +90,7 @@
     NSString *coverBigUrl = [album objectForKey:@"image_big"];
     NSString *detailUrl = [album objectForKey:@"link_mobile"];
     
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSManagedObjectContext *context = self.backgroundMOC;
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Album *newAlbum = (Album*) [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 
@@ -111,7 +112,7 @@
     
     Artist *artist = (Artist *)[NSEntityDescription
                                 insertNewObjectForEntityForName:@"Artist"
-                                inManagedObjectContext:self.managedObjectContext]; 
+                                inManagedObjectContext:self.backgroundMOC]; 
    
 //TODO:find if singer exist ,if not create it
     artist.gerne = @"rock";
@@ -121,13 +122,21 @@
     newAlbum.artist = artist;
 
     // Save the context.
+    //[self saveContext];
+   
+
+
+}
+
+- (void) saveContext
+{
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSError *error = nil;
     if (![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-
-
+    
 }
 
 - (BOOL) albumDoesNotExsitByTitle:(NSString*)albumTitle
@@ -149,7 +158,7 @@
     
     NSError *error = nil;
     
-    NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
+    NSUInteger count = [self.backgroundMOC countForFetchRequest:request error:&error];
     
     if(error || (count == 0)){
         return YES;
@@ -234,8 +243,22 @@
 }
 
 
+/**
+ * This method will be run in a background thread started by MBProgressHD
+ */
+ 
+
 - (void)updateLocalDatabase
 {
+    
+    self.backgroundMOC = [[NSManagedObjectContext alloc] init];
+    
+    [self.backgroundMOC setPersistentStoreCoordinator:[self.managedObjectContext persistentStoreCoordinator]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundMOCDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];         
+
+
+    
     HUD.mode = MBProgressHUDModeDeterminate;
     HUD.labelText = @"Update..";
     
@@ -258,12 +281,19 @@
     //HUD.mode = MBProgressHUDModeDeterminate;
     //HUD.labelText = @"Update..";
     
-    float count = 0.0f ;
+    int count = 0 ;
     
     //save those posts
     for (NSDictionary *post in posts){
         NSDictionary *album = (NSDictionary*)[post objectForKey:@"post"];
         NSString *title = [album objectForKey:@"title"];
+        
+        //we could make sure we only insert but not update in the server 
+        //if we need to check while insert we have to saveContext otherwise 
+        //NSException(set was mutated while be enumerated) will be thrown
+        
+        //check:
+        //http://stackoverflow.com/questions/3446983/collection-was-mutated-while-being-enumerated-on-executefetchrequest
         
         if([self albumDoesNotExsitByTitle:title]){
             //NSLog(@"add new album %@ ",title);
@@ -272,22 +302,46 @@
             //NSLog(@"album %@ already exsit",title);
         }
         
-        count += 1.0f;
-        HUD.progress = count / totalUpdate; 
+        count += 1;
+        
+        //save every 10 items 
+        if((count % 10) == 0){
+            //save context in batch is much fast than save context for each insert
+            [self.backgroundMOC save:NULL];
+        }
+        HUD.progress = (float)count / totalUpdate; 
     }
     
     NSLog(@"finish update");
-    
-    //usleep(2000);
+  
+    //save remaining..
+    [self.backgroundMOC save:NULL];
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 	HUD.mode = MBProgressHUDModeCustomView;
 	[HUD hide:YES afterDelay:2];
     
+   
     
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];
+    
+    [self.backgroundMOC reset]; 
+     self.backgroundMOC = nil;
 
 }
+
+
+- (void)backgroundMOCDidSave:(NSNotification*)notification {    
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(backgroundMOCDidSave:) withObject:notification waitUntilDone:YES];
+        return;
+    }
+    
+    // We merge the background moc changes in the main moc
+    
+    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"finish download the data ,will update local db");

@@ -33,9 +33,8 @@
     AlbumsListViewController * albumListViewController = (AlbumsListViewController*)[albumNavigationController topViewController];
     
     albumListViewController.managedObjectContext = self.managedObjectContext;
-    
-    
-    [self populateData];
+
+    //[self populateData];
     return YES;
 }
 							
