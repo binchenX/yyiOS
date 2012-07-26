@@ -30,6 +30,8 @@
 //    albumListViewController.managedObjectContext = self.managedObjectContext;
     
     UINavigationController * albumNavigationController = (UINavigationController*)self.window.rootViewController;
+    
+    //[albumNavigationController setEditing:NO];
     AlbumsListViewController * albumListViewController = (AlbumsListViewController*)[albumNavigationController topViewController];
     
     albumListViewController.managedObjectContext = self.managedObjectContext;

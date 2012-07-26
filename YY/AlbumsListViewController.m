@@ -53,12 +53,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    UIBarButtonItem *updateButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
         target:self action:@selector(updateAlbums:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.rightBarButtonItem = updateButton;
 }
 
 - (void)viewDidUnload
@@ -101,8 +101,6 @@
     newAlbum.coverBigUrl = coverBigUrl;
     newAlbum.detailUrl = detailUrl;
     
-   
-    
     NSString *singer = [album objectForKey:@"singer"];
     
     //hack
@@ -114,30 +112,24 @@
                                 insertNewObjectForEntityForName:@"Artist"
                                 inManagedObjectContext:self.backgroundMOC]; 
    
-//TODO:find if singer exist ,if not create it
+    //TODO:find if singer exist ,if not create it
     artist.gerne = @"rock";
     artist.name  = singer;
     
     //an album MUST have a artist
     newAlbum.artist = artist;
-
-    // Save the context.
-    //[self saveContext];
-   
-
-
 }
 
-- (void) saveContext
-{
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSError *error = nil;
-    if (![context save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-}
+//- (void) saveContext
+//{
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//    NSError *error = nil;
+//    if (![context save:&error]) {
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//    }
+//    
+//}
 
 - (BOOL) albumDoesNotExsitByTitle:(NSString*)albumTitle
 {
@@ -423,7 +415,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

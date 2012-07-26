@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6a8-Z3-w1Y">
-                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -298,33 +298,6 @@
         <image name="bar.png" width="32" height="37"/>
         <image name="start_red_32x32.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="AlbumDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="downLoad:"/>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="play:"/>
-                <relationship kind="outlet" name="coverBig" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="playerViewHolder" candidateClass="UIView"/>
-                <relationship kind="outlet" name="recommendStar" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="summary" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="AlbumWebResouceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumWebResouceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="navigateBack"/>
-                <relationship kind="action" name="navigateForward"/>
-                <relationship kind="outlet" name="browserBackButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="browserForwardButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="AlbumsListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumsListViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
