@@ -446,11 +446,13 @@
 		87ED8E4515B15F9F00D2C800 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: pierr chen (V74VDYC6WF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YY/YY-Prefix.pch";
 				INFOPLIST_FILE = "YY/YY-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E3C0B4CD-29F9-4E11-B857-328D9272984E";
 				USER_HEADER_SEARCH_PATHS = "”$(TARGET_BUILD_DIR)/usr/local/lib/include” ”$(OBJROOT)/UninstalledProducts/include”";
 				WRAPPER_EXTENSION = app;
 			};

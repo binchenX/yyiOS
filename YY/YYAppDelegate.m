@@ -35,9 +35,39 @@
     AlbumsListViewController * albumListViewController = (AlbumsListViewController*)[albumNavigationController topViewController];
     
     albumListViewController.managedObjectContext = self.managedObjectContext;
+    
+    NSLog(@"Registering for push notifications...");    
+    [[UIApplication sharedApplication] 
+     registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert | 
+      UIRemoteNotificationTypeBadge | 
+      UIRemoteNotificationTypeSound)];
 
     //[self populateData];
     return YES;
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { 
+    
+    NSString *str = [NSString 
+                     stringWithFormat:@"Device Token=%@",deviceToken];
+    NSLog(str);
+    
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err { 
+    
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(str);    
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    for (id key in userInfo) {
+        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+    }    
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
