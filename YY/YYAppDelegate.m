@@ -48,25 +48,26 @@
 }
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { 
-    
-    NSString *str = [NSString 
-                     stringWithFormat:@"Device Token=%@",deviceToken];
-    NSLog(str);
-    
+    NSLog(@"Notification registered. Device Token %@",deviceToken);
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err { 
-    
-    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    NSLog(str);    
+    NSLog(@"failed to register, error = %@", err);    
     
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
+    NSLog(@"Notification received:");
     for (id key in userInfo) {
         NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
     }    
+    
+    if ( application.applicationState == UIApplicationStateActive ){
+        NSLog(@"application is in foreground");
+    }else{
+        NSLog(@"app was just brought from background to foreground");
+    }
     
 }
 							
