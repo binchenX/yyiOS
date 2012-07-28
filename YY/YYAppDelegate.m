@@ -9,6 +9,7 @@
 #import "YYAppDelegate.h"
 #import "Artist.h"
 #import "Album.h"
+#import "Config.h"
 
 #import "AlbumsListViewController.h"
 
@@ -43,8 +44,35 @@
       UIRemoteNotificationTypeBadge | 
       UIRemoteNotificationTypeSound)];
 
+    
+    [self checkConfig];
     //[self populateData];
     return YES;
+}
+
+- (void) checkConfig
+{
+    //if no Config , it is a fresh install ,initialize it
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Config" inManagedObjectContext:self.managedObjectContext];
+    
+    [request setEntity:entity];
+    
+    NSError *error = nil;
+
+    NSUInteger count =[self.managedObjectContext countForFetchRequest:request error:&error];
+    
+    if (count == 0 ) {
+        NSLog(@"it is a fresh install");
+        //create and init
+        Config * config = [NSEntityDescription insertNewObjectForEntityForName:@"Config" inManagedObjectContext:self.managedObjectContext];
+        
+        config.isFreshInstall = [NSNumber numberWithBool:YES];
+        
+        [self saveContext];
+    }
+    
+    
 }
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { 

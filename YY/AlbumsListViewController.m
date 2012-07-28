@@ -11,6 +11,7 @@
 
 #import "Album.h"
 #import "Artist.h"
+#import "Config.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -59,6 +60,10 @@
     UIBarButtonItem *updateButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
         target:self action:@selector(updateAlbums:)];
     self.navigationItem.rightBarButtonItem = updateButton;
+    
+    if([self isFreshInstall]){
+        [self fetchUpdateFromServer];
+    }
 }
 
 - (void)viewDidUnload
@@ -163,10 +168,10 @@
     
     jsonData = [[NSMutableData alloc] init];
     
-    //NSString *requestUrlSimulator = @"http://localhost:3000/api?tag=album&since=2000-01";
-    
-    NSString *requestUrlDevice = @"http://www.rock-n-folk.com/api?tag=album&since=2010-01";
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestUrlDevice]];
+    NSString *requestUrl = @"http://www.rock-n-folk.com/api?tag=album&since=";
+    NSString *lastUpdateTime = [self getLastUpdateTime];
+    requestUrl = [requestUrl stringByAppendingString:lastUpdateTime];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestUrl]];
     
     connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
@@ -178,11 +183,6 @@
     NSLog(@"start connecting..");
     
     //[connection start];
-    
-    // myProgressTask uses the HUD instance to update progress
-	//[HUD showWhileExecuting:@selector(myProgressTask) onTarget:self withObject:nil animated:YES];
-    
-    
     
 }
 
@@ -295,21 +295,28 @@
         
         HUD.progress = (float)count / totalUpdate; 
     }
-    
+
     NSLog(@"finish update");
-    //save remaining..
+    //save remaining posts & update config
     [self.backgroundMOC save:NULL];
     
-    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-	HUD.mode = MBProgressHUDModeCustomView;
-	[HUD hide:YES afterDelay:2];
     
+    [self showDoneHud];
+   
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];
     
     //clean up
     [self.backgroundMOC reset]; 
      self.backgroundMOC = nil;
+   
 
+}
+
+- (void)showDoneHud
+{
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    HUD.mode = MBProgressHUDModeCustomView;
+    [HUD hide:YES afterDelay:2];
 }
 
 
@@ -328,6 +335,7 @@
 {
     NSLog(@"finish download the data ,will update local db");
     [HUD showWhileExecuting:@selector(updateLocalDatabase) onTarget:self withObject:nil animated:YES];
+    [self updateLastUpdteTime];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -646,6 +654,82 @@
     currentViewedIndexPath = next;
     return (Album*)[self.fetchedResultsController objectAtIndexPath:next];
 
+}
+
+
+#pragma mark - config stuff
+
+-(Config*)getConfig
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Config" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    [request setEntity:entity];
+    NSError *error = nil;
+    NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if ([array count] != 1) {
+        NSLog(@"should have only one config object");
+        abort();
+        return nil;
+        
+    }
+    
+    return (Config*)[array objectAtIndex:0];
+
+    
+}
+
+-(BOOL)isFreshInstall
+{    
+    Config *config = [self getConfig];
+    
+    NSNumber *isFreshInstall = config.isFreshInstall;
+    
+    if ([isFreshInstall isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        return YES;
+    }
+    
+    return NO;
+    
+}
+
+/**
+ *Intend to be called in the main thread. So managedObjectContext was used.
+ *
+ */
+ 
+-(void)updateLastUpdteTime
+{
+   
+    Config *config = [self getConfig];
+    
+    config.lastUpdateTime = [NSDate date];
+    config.isFreshInstall = [NSNumber numberWithBool:NO];
+    
+    NSError *error = nil;
+    [self.managedObjectContext save:&error];
+    
+    if(error){
+        NSLog(@"update config error %@",error);
+    }
+    
+   NSLog(@"intend to update lastUpateTime to %@ ,result %@ " ,
+           config.lastUpdateTime,[self getLastUpdateTime]);
+
+}
+
+
+-(NSString*)getLastUpdateTime
+{
+ 
+    Config *config = [self getConfig];
+    NSString *l = @"1900-00";
+    if(config != nil && config.lastUpdateTime != nil){
+        l = [self.userVisiableDateFormatter stringFromDate:config.lastUpdateTime];
+    }
+    
+    NSLog(@"lastUpdateTime is %@",l );
+    return l;
 }
 
 

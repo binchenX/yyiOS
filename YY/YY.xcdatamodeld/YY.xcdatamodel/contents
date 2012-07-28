@@ -21,6 +21,10 @@
         <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" inverseName="artist" inverseEntity="Album" syncable="YES"/>
     </entity>
     <entity name="Bar" syncable="YES"/>
+    <entity name="Config" representedClassName="Config" syncable="YES">
+        <attribute name="isFreshInstall" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastUpdateTime" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <entity name="Event">
         <attribute name="timeStamp" optional="YES" attributeType="Date"/>
     </entity>
@@ -32,5 +36,6 @@
         <element name="Bar" positionX="-81" positionY="171" width="128" height="45"/>
         <element name="Event" positionX="394" positionY="18" width="128" height="60"/>
         <element name="Show" positionX="-99" positionY="72" width="128" height="45"/>
+        <element name="Config" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
