@@ -48,7 +48,9 @@
 }
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { 
-    NSLog(@"Notification registered. Device Token %@",deviceToken);
+   // NSLog(@"Notification registered. Device Token %@",deviceToken);
+    
+    [self registerDeviceToServer:[NSString stringWithFormat:@"%@",deviceToken]];
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err { 
@@ -263,6 +265,44 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+
+
+#pragma mark - notification handling
+
+-(void)registerDeviceToServer:(NSString*)token
+{
+    
+    NSString *apiStringPrefix = @"http://www.rock-n-folk.com/nc?func=registerDevice&&token=";
+    NSString *apiString = [apiStringPrefix stringByAppendingString:[token stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:apiString]];
+    
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+                            
+    [connection start];
+}
+
+
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"register successed");
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"register failed %@" , error);
 }
 
 @end

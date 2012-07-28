@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YYAppDelegate : UIResponder <UIApplicationDelegate>
+@interface YYAppDelegate : UIResponder <UIApplicationDelegate,NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
