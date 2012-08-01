@@ -133,7 +133,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="album_big.png" id="AvK-k9-mGg">
+                            <imageView contentMode="scaleAspectFit" image="album_big.png" id="AvK-k9-mGg">
                                 <rect key="frame" x="35" y="39" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -149,12 +149,12 @@
                                     <outletCollection property="gestureRecognizers" destination="FNB-AZ-TpX" appends="YES" id="BPf-70-3Na"/>
                                 </connections>
                             </textView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" image="start_red_32x32.png" id="Odo-xo-Q0P">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" image="star_red.png" id="Odo-xo-Q0P">
                                 <rect key="frame" x="245" y="13" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vJx-5m-HyE">
-                                <rect key="frame" x="245" y="379" width="72" height="37"/>
+                                <rect key="frame" x="240" y="252" width="45" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="详情">
@@ -296,7 +296,7 @@
         <image name="album_big.png" width="220" height="220"/>
         <image name="albums.png" width="48" height="48"/>
         <image name="bar.png" width="32" height="37"/>
-        <image name="start_red_32x32.png" width="32" height="32"/>
+        <image name="star_red.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

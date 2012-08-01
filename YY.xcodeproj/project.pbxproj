@@ -35,6 +35,9 @@
 		87ED8E5A15B169E800D2C800 /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */; };
 		87ED8E8D15B1B3B500D2C800 /* album1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 87ED8E8C15B1B3B500D2C800 /* album1.jpg */; };
 		87EE38D115C8CFC20070B6F4 /* star_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE38D015C8CFC20070B6F4 /* star_red.png */; };
+		87EE38DD15C8FAB60070B6F4 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE38DC15C8FAB60070B6F4 /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87EE38DF15C8FE5E0070B6F4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87EE38DE15C8FE5E0070B6F4 /* AudioToolbox.framework */; };
+		87EE38E115C8FE8D0070B6F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87EE38E015C8FE8D0070B6F4 /* CFNetwork.framework */; };
 		87FDC05B15B271FC0075FBD0 /* AlbumWebResouceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,10 @@
 		87ED8E5915B169E800D2C800 /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageToDataTransformer.m; path = YY/UIImageToDataTransformer.m; sourceTree = "<group>"; };
 		87ED8E8C15B1B3B500D2C800 /* album1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = album1.jpg; path = YY/album1.jpg; sourceTree = "<group>"; };
 		87EE38D015C8CFC20070B6F4 /* star_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_red.png; sourceTree = "<group>"; };
+		87EE38DB15C8FAB60070B6F4 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		87EE38DC15C8FAB60070B6F4 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		87EE38DE15C8FE5E0070B6F4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		87EE38E015C8FE8D0070B6F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		87FDC05915B271FC0075FBD0 /* AlbumWebResouceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumWebResouceViewController.h; path = YY/AlbumWebResouceViewController.h; sourceTree = "<group>"; };
 		87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumWebResouceViewController.m; path = YY/AlbumWebResouceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +125,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87EE38E115C8FE8D0070B6F4 /* CFNetwork.framework in Frameworks */,
+				87EE38DF15C8FE5E0070B6F4 /* AudioToolbox.framework in Frameworks */,
 				878EB4AE15C01685005689C2 /* MediaPlayer.framework in Frameworks */,
 				87E4D00C15BABA540020E76F /* AVFoundation.framework in Frameworks */,
 				8791FCB615B7AF2500CC1095 /* ImageIO.framework in Frameworks */,
@@ -154,6 +163,8 @@
 		87ED8E1315B15F9F00D2C800 = {
 			isa = PBXGroup;
 			children = (
+				87EE38E015C8FE8D0070B6F4 /* CFNetwork.framework */,
+				87EE38DE15C8FE5E0070B6F4 /* AudioToolbox.framework */,
 				878EB4AD15C01685005689C2 /* MediaPlayer.framework */,
 				87E4D00B15BABA540020E76F /* AVFoundation.framework */,
 				8791FCB515B7AF2500CC1095 /* ImageIO.framework */,
@@ -163,6 +174,7 @@
 				8791FCD415B81A6A00CC1095 /* error.png */,
 				87EE38D015C8CFC20070B6F4 /* star_red.png */,
 				8791FCCE15B7E28B00CC1095 /* 37x-Checkmark.png */,
+				87EE38DA15C8FA560070B6F4 /* Player */,
 				8791FCCA15B7DF1D00CC1095 /* Hud */,
 				87ED8E5715B1687E00D2C800 /* View Controller */,
 				87ED8E5615B1686300D2C800 /* Appliacation */,
@@ -251,6 +263,15 @@
 				87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */,
 			);
 			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		87EE38DA15C8FA560070B6F4 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				87EE38DB15C8FAB60070B6F4 /* AudioStreamer.h */,
+				87EE38DC15C8FAB60070B6F4 /* AudioStreamer.m */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +388,7 @@
 				87FDC05B15B271FC0075FBD0 /* AlbumWebResouceViewController.m in Sources */,
 				8791FCCD15B7DF4400CC1095 /* MBProgressHUD.m in Sources */,
 				878B264515C3C7FD00FC0C86 /* Config.m in Sources */,
+				87EE38DD15C8FAB60070B6F4 /* AudioStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

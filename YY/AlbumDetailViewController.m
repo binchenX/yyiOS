@@ -12,6 +12,7 @@
 #import "AlbumWebResouceViewController.h"
 #import "Album.h"
 #import "Artist.h"
+#import "AudioStreamer.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -27,6 +28,7 @@ CGFloat kMovieViewOffsetY = 20.0;
 @interface AlbumDetailViewController ()
 {
     UIImage *placeHolderImage;
+    AudioStreamer *streamer;
 }
 - (void)configureView;
 
@@ -211,7 +213,8 @@ CGFloat kMovieViewOffsetY = 20.0;
 - (IBAction)play:(id)sender {
     NSString * url = @"https://s3-ap-southeast-1.amazonaws.com/yyapp/lizhi_youxi.mp3";
     //[self playAudio:url];
-    [self playMovieStream:[NSURL URLWithString:url]];
+    //[self playMovieStream:[NSURL URLWithString:url]];
+    [self playAudioStream:[NSURL URLWithString:url]];
 }
 
 
@@ -265,9 +268,9 @@ CGFloat kMovieViewOffsetY = 20.0;
         
         //CGRect viewInsetRect = CGRectInset ([self.playerViewHolder  bounds],5,5);
         
-        CGRect rect = CGRectMake(5, 392, 200, 20);
+        //CGRect rect = CGRectMake(20, 392, 200, 20);
         /* Inset the movie frame in the parent view frame. */
-        [[player view] setFrame:rect];
+        //[[player view] setFrame:rect];
         
         [player view].backgroundColor = [UIColor lightGrayColor];
         
@@ -429,6 +432,75 @@ CGFloat kMovieViewOffsetY = 20.0;
 }
 
 
+
+#pragma mark - player using Audio Streamer
+-(void)playAudioStream:(NSURL *)audioUrl
+{
+        [self createStreamer:audioUrl];
+    
+    	[streamer start];
+}
+
+//
+// destroyStreamer
+//
+// Removes the streamer, the UI update timer and the change notification
+//
+- (void)destroyStreamer
+{
+	if (streamer)
+	{
+		[[NSNotificationCenter defaultCenter]
+         removeObserver:self
+         name:ASStatusChangedNotification
+         object:streamer];
+
+		[streamer stop];
+		streamer = nil;
+	}
+}
+
+//
+// createStreamer
+//
+// Creates or recreates the AudioStreamer object.
+//
+- (void)createStreamer:(NSURL*)url
+{
+	if (streamer)
+	{
+		return;
+	}
+    
+	[self destroyStreamer];
+    
+	streamer = [[AudioStreamer alloc] initWithURL:url];
+	
+
+	[[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(playbackStateChanged:)
+     name:ASStatusChangedNotification
+     object:streamer];
+}
+
+
+- (void)playbackStateChanged:(NSNotification *)aNotification
+{
+	if ([streamer isWaiting])
+	{
+		//[self setButtonImageNamed:@"loadingbutton.png"];
+	}
+	else if ([streamer isPlaying])
+	{
+		//[self setButtonImageNamed:@"stopbutton.png"];
+	}
+	else if ([streamer isIdle])
+	{
+		[self destroyStreamer];
+		//[self setButtonImageNamed:@"playbutton.png"];
+	}
+}
 
 
 @end
