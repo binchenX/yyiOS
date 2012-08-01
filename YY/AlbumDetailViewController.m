@@ -71,13 +71,10 @@ CGFloat kMovieViewOffsetY = 20.0;
 
 - (void)configureView
 {
-    
         // Update the user interface for the detail item.
-
     if (self.album) {
         //setup the navigation item
-        self.navigationItem.title = self.album.title;
-        
+        //self.navigationItem.title = self.album.title;
         //setup the summary
         NSString * albumDetail = [NSString stringWithFormat:@"%@",self.album.artist.name];
         albumDetail = [albumDetail stringByAppendingFormat:@" - %@",self.album.title];
