@@ -187,15 +187,7 @@
 }
 
 
-- (void)myProgressTask {
-	// This just increases the progress indicator in a loop
-	float progress = 0.0f;
-	while (progress < 1.0f) {
-		progress += 0.01f;
-		HUD.progress = progress;
-		usleep(50000);
-	}
-}
+
 
 
 #pragma mark URLConnectionDataDelegate
@@ -204,18 +196,12 @@
 {
     expectedLength = [response expectedContentLength];
     currentLength = 0;
-    //HUD.mode = MBProgressHUDModeDeterminate;
-    //HUD.labelText = @"Connecting..";
     NSLog(@"get response");
     
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    
     [jsonData appendData:data];
-    //currentLength += [data length];
-	//HUD.progress = currentLength / (float)expectedLength;
-    
 }
 
 - (NSDateFormatter*) rfc3339DateFormatter
@@ -246,15 +232,6 @@
 - (void)updateLocalDatabase
 {
     
-    self.backgroundMOC = [[NSManagedObjectContext alloc] init];
-    
-    [self.backgroundMOC setPersistentStoreCoordinator:[self.managedObjectContext persistentStoreCoordinator]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundMOCDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];         
-
-    HUD.mode = MBProgressHUDModeDeterminate;
-    HUD.labelText = @"Update..";
-    
     NSError *error = nil;
     NSArray *posts = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     if(error){
@@ -268,7 +245,24 @@
     
     NSUInteger totalUpdate = [posts count];
     NSLog(@"get %d posts" , totalUpdate);
+    
+    if(totalUpdate == 0){
+        //no update
+        [self showNoUpdateHud];
+        return;
+        
+    }
 
+    //go and update
+    self.backgroundMOC = [[NSManagedObjectContext alloc] init];
+    
+    [self.backgroundMOC setPersistentStoreCoordinator:[self.managedObjectContext persistentStoreCoordinator]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundMOCDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.backgroundMOC];  
+    
+    HUD.mode = MBProgressHUDModeDeterminate;
+    HUD.labelText = @"Update..";
+    
     int count = 0 ;
     
     //save those posts
@@ -316,8 +310,23 @@
 {
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    [HUD hide:YES afterDelay:2];
+    HUD.labelText = @"Done";
+    sleep(2);
+    //[HUD hide:YES afterDelay:2];
 }
+
+
+- (void)showNoUpdateHud
+{
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"No Update";
+    //[HUD hide:YES afterDelay:2];
+    sleep(2);
+}
+
+
+
 
 
 - (void)backgroundMOCDidSave:(NSNotification*)notification {    
@@ -598,6 +607,7 @@
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
 	// Remove HUD from screen when the HUD was hidded
+    NSLog(@"hud hide");
 	[HUD removeFromSuperview];
 	 HUD = nil;
 }
