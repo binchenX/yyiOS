@@ -467,10 +467,10 @@ CGFloat kMovieViewOffsetY = 20.0;
 //
 - (void)createStreamer:(NSURL*)url
 {
-	if (streamer)
-	{
-		return;
-	}
+//	if (streamer)
+//	{
+//		return;
+//	}
     
 	[self destroyStreamer];
     
