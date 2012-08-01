@@ -42,6 +42,7 @@
 		87EE38E815C906200070B6F4 /* play1normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE38E515C906200070B6F4 /* play1normal.png */; };
 		87EE38E915C906200070B6F4 /* playing.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE38E615C906200070B6F4 /* playing.png */; };
 		87EE38EA15C906200070B6F4 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE38E715C906200070B6F4 /* pause.png */; };
+		87EE38EC15C9101A0070B6F4 /* get_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE38EB15C9101A0070B6F4 /* get_info.png */; };
 		87FDC05B15B271FC0075FBD0 /* AlbumWebResouceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		87EE38E515C906200070B6F4 /* play1normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play1normal.png; sourceTree = "<group>"; };
 		87EE38E615C906200070B6F4 /* playing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing.png; sourceTree = "<group>"; };
 		87EE38E715C906200070B6F4 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		87EE38EB15C9101A0070B6F4 /* get_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = get_info.png; sourceTree = "<group>"; };
 		87FDC05915B271FC0075FBD0 /* AlbumWebResouceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumWebResouceViewController.h; path = YY/AlbumWebResouceViewController.h; sourceTree = "<group>"; };
 		87FDC05A15B271FC0075FBD0 /* AlbumWebResouceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumWebResouceViewController.m; path = YY/AlbumWebResouceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +287,7 @@
 				87EE38E515C906200070B6F4 /* play1normal.png */,
 				87EE38E615C906200070B6F4 /* playing.png */,
 				87EE38E715C906200070B6F4 /* pause.png */,
+				87EE38EB15C9101A0070B6F4 /* get_info.png */,
 				873822DB15B26F02006C9EE1 /* album_big.png */,
 				8791FCD415B81A6A00CC1095 /* error.png */,
 				87EE38E315C901700070B6F4 /* play_alt.png */,
@@ -392,6 +395,7 @@
 				87EE38E815C906200070B6F4 /* play1normal.png in Resources */,
 				87EE38E915C906200070B6F4 /* playing.png in Resources */,
 				87EE38EA15C906200070B6F4 /* pause.png in Resources */,
+				87EE38EC15C9101A0070B6F4 /* get_info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
